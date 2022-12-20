@@ -4,8 +4,8 @@
 #include <fstream>
 
 using namespace std;
-using namespace ds;
 using namespace chrono_literals;
+using namespace ds;
 
 // ./<program> <size_in_2_power_of>
 //
