@@ -1,5 +1,9 @@
 # Data Structure course - assign3
 
+## Home page of main branch
+
+[Click here - GitHub](https://github.com/AsherJingkongChen/ds-assign3)
+
 ## File structure
 
 ```
