@@ -2,6 +2,7 @@
 #include "../src/cpp/header/test_header.hpp"
 
 using namespace ds;
+using namespace std::chrono_literals;
 
 // ./<program> <size_in_2_power_of>
 //
@@ -12,14 +13,28 @@ int main(int argc, char* argv[]) {
 
   // B+ Tree with order 4
   //
-  BPTree<int, int> structure(4);
+  BPTree<int, int> db(4);
+  urng<int> rng(1, 1 << 30);
+  timer<timeunit::msec> tim;
 
-  TIMEOUT_WRAPPER([&]() {
-    for (auto t = from_2_power_of(size_in_2_power_of); t--;) {
-      structure.put()
+  set_timeout(1h,
+  // to process
+    [&]() {
+      for (auto t = from_2_power_of(size_in_2_power_of); t--;) {
+        db.put(rng(), rng());
+      }
+    },
+
+  // on success
+    []() {
+
+    },
+
+  // on failure
+    []() {
+
     }
-
-  }, 3600s);
+  );
 
   return 0;
 }
