@@ -14,7 +14,6 @@
 |   `-- HW3_2022.docx
 |-- example/
 |-- img/
-|-- private/
 |-- src/
 |   |-- cpp/
 |   |   |-- header/
@@ -47,5 +46,5 @@
             |-- speed_test_pic.png
             `-- test_env.png
 
-14 directories, 24 files
+13 directories, 24 files
 ```
