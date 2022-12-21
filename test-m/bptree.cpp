@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     {"search_time_in_millisecond", ""}
   });
 
-  // skip test if `do_skipping` 
+  // skip the test if `do_skipping` 
   // (passed from the previous test) is true
   //
   if (do_skipping) {
