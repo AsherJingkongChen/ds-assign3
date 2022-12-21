@@ -12,6 +12,6 @@ echo "running $NAMES with size in 2 power from $FROM to $TO";
 
 for name in ${NAMES[@]}; do
   for size in {$FROM..$TO}; do
-    (./bin/bptree $size) 2>&1 >> data/bptree.log
+    (./bin/$name $size) 2>&1 >> data/$name.log
   done
 done
