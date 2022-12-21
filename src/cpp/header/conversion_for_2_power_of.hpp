@@ -22,9 +22,8 @@ from_2_power_of(std::size_t in_2_power_of) {
 // in_2_power_of(1000) -> 10
 // in_2_power_of(1100) -> 10
 //
-constexpr std::size_t 
-in_2_power_of(std::size_t from_2_power_of) {
-  return 
+std::size_t in_2_power_of(std::size_t from_2_power_of) {
+  return
   std::round(
     std::log2(
       std::max(

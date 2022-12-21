@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     [&data, &clock]() { data[2] = to_string(clock.elapsed()); },
 
   // on failure
-    [&data, &clock]() { data[2] = ""; }
+    [&data]() { data[2] = ""; }
   );
 
   set_timeout(1s, // for test
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
     [&data, &clock]() { data[3] = to_string(clock.elapsed()); },
 
   // on failure
-    [&data, &clock]() { data[3] = ""; }
+    [&data]() { data[3] = ""; }
   );
 
   cout << data.row_line() << flush;
