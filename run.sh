@@ -23,7 +23,6 @@ for name in ${NAMES[@]}; do
 
     $binary_name $size $do_skipping >> $output_name;
     do_skipping=$?;
-    echo $do_skipping;
   done
 done
 

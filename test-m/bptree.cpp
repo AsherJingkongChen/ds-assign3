@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
   //
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
-  auto max_time(200ms);
+  auto max_time(1h);
 
   // B Plus Tree with order 4
   //
