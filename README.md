@@ -36,7 +36,6 @@ from [SirLYC/BPTree](https://github.com/SirLYC/BPTree)
 |   |   |   `-- uniform_random_number_generator.hpp
 |   |   `-- source/
 |   `-- py/
-|-- t/
 |-- test-m/
 |   |-- bptree.cpp
 |   `-- create_result_header.cpp
