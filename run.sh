@@ -2,24 +2,29 @@
 # before running this script, please enter `chmod +x run.sh`
 
 FROM=10;
-TO=16;
+TO=30;
 
 NAMES=(
   "bptree"
 );
 
-for name in ${NAMES[@]}; do
-  output_name="output/test/$name.log";
-  > $output_name;
-((i=1;i<=END;i++))
-  for (( size=$FROM; size<=$TO; size++ )); do
-    binary_name="bin/test/$name";
-    echo "testing $name with size in 2 power of $size";
+mkdir "output";
+mkdir "output/test-m";
 
-    ($binary_name $size) 2>&1 | tee -a $output_name;
+for name in ${NAMES[@]}; do
+  output_name="output/test-m/$name.log";
+  > $output_name;
+
+  do_skipping=0;
+  for (( size=$FROM; size<=$TO; size++ )); do
+    binary_name="bin/test-m/$name";
+    echo "testing: $binary_name $size $do_skipping" \
+         ">> $output_name";
+
+    $binary_name $size $do_skipping >> $output_name;
+    do_skipping=$?;
+    echo $do_skipping;
   done
 done
 
-for name in ${NAMES[@]}; do
-  # cat TODO
-done
+./get_result.sh
