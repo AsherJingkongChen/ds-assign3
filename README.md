@@ -12,25 +12,36 @@ from [SirLYC/BPTree](https://github.com/SirLYC/BPTree)
 ```
 ./
 |-- README.md
-|-- build/
+|-- build.sh*
+|-- clear.sh*
 |-- doc/
 |   `-- HW3_2022.docx
 |-- example/
+|-- get_result.sh*
 |-- img/
+|-- output/
+|   `-- test-m/
+|       |-- bptree.log
+|       `-- result.csv
+|-- run.sh*
 |-- src/
 |   |-- cpp/
 |   |   |-- header/
+|   |   |   |-- check_main.hpp
 |   |   |   |-- conversion_for_2_power_of.hpp
-|   |   |   |-- get_size_in_2_power_of_from_main.hpp
+|   |   |   |-- csv.hpp
+|   |   |   |-- set_timeout.hpp
 |   |   |   |-- test_header.hpp
-|   |   |   |-- timeout.hpp
+|   |   |   |-- timer.hpp
 |   |   |   `-- uniform_random_number_generator.hpp
 |   |   `-- source/
 |   `-- py/
-|-- test/
-|   `-- bptree.cpp
+|-- t/
+|-- test-m/
+|   |-- bptree.cpp
+|   `-- create_result_header.cpp
 `-- third-party/
-    `-- SirLYC-BPTree/
+    `-- BPTree/
         |-- BPTree.h
         |-- CMakeLists.txt
         |-- Comp.h
@@ -49,5 +60,6 @@ from [SirLYC/BPTree](https://github.com/SirLYC/BPTree)
             |-- speed_test_pic.png
             `-- test_env.png
 
-13 directories, 24 files
+15 directories, 33 files
+
 ```
