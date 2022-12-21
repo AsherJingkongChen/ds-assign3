@@ -1,6 +1,17 @@
 #! /usr/bin/env bash
 # before running this script, please enter `chmod +x run.sh`
 
-for i in {10..16}; do
-  ./bin/test-bptree $i;
+FROM=10;
+TO=16;
+
+NAMES=(
+  "bptree" 
+);
+
+echo "running $NAMES with size in 2 power from $FROM to $TO";
+
+for name in ${NAMES[@]}; do
+  for size in {$FROM..$TO}; do
+    (./bin/bptree $size) 2>&1 >> data/bptree.log
+  done
 done
