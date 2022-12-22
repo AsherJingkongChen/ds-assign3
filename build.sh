@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
-# before running this script, please enter `chmod +x run.sh`
+# before running this script, please enter `chmod +x build.sh`
 
-# arguments
+# argument
 # [$1]: CXX and CXXFLAGS
 #
 if [ $# -ge 1 ]; then
@@ -10,21 +10,23 @@ else
   CXX="g++";
 fi
 
-CXX_FLAGS="-std=c++14 -O3 -Wall";
+CXX_FLAGS="-std=c++17 -O3 -Wall";
 NAMES=(
-  "create_result_header"
-  "bptree"
+  "insert/bptree"
+  "search/bptree"
 );
 
 echo "checking CXX compiler";
 $CXX --version;
 
 mkdir "bin";
-mkdir "bin/test-m";
+mkdir "bin/test";
+mkdir "bin/test/insert";
+mkdir "bin/test/search";
 
 for name in ${NAMES[@]}; do
-  source_name="test-m/$name.cpp";
-  binary_name="bin/test-m/$name";
+  source_name="test/$name.cpp";
+  binary_name="bin/test/$name";
   echo "compiling: $CXX $CXX_FLAGS" \
        "$source_name -o $binary_name";
 
