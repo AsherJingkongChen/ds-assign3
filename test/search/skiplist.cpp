@@ -1,15 +1,17 @@
 #include <iostream>
 #include "../../src/cpp/header/test_header.hpp"
-#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include "../../third-party/Skiplist/include/chef_base/chef_skiplist.hpp"
 
 using namespace ds;
 using namespace std;
+using namespace chef;
 using namespace chrono_literals;
 
 // ./<program> <size_in_2_power_of> <do_skipping>
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
+  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -18,7 +20,7 @@ int main(int argc, char* argv[]) {
   bool do_skipping(stoi(argv[2]));
 
   csv data({
-    {"structure_name", "bptree"},
+    {"structure_name", "skiplist"},
     {"operation_name", "search"},
     {"size_in_2_power_of", argv[1]},
     {"time_in_millisecond", ""}
@@ -40,9 +42,10 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  BTree<int, int> st;
+  skiplist<int, int> st;
+
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert(rng(), rng());
+    st.insert({rng(), rng()});
   }
 
   try {
@@ -51,7 +54,10 @@ int main(int argc, char* argv[]) {
       [&]() {
         clock.reset();
         for (size_t t(100000); t--;) {
-          st.find(rng());
+          auto k(rng());
+          if (st.find(k) != st.end()) {
+            _ = k;
+          }
         }
         clock.pause();
       }

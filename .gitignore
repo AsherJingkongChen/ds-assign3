@@ -1,6 +1,7 @@
 .vscode
 .obsidian
 .DS_Store
+.trash
 
 *.dSYM
 *.o

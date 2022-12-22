@@ -1,5 +1,11 @@
-bptree,search,10,8
-bptree,search,11,9
-bptree,search,12,9
-bptree,search,13,10
-bptree,search,14,13
+bptree,search,10,9
+bptree,search,11,10
+bptree,search,12,12
+bptree,search,13,12
+bptree,search,14,15
+bptree,search,15,16
+bptree,search,16,18
+bptree,search,17,20
+bptree,search,18,25
+bptree,search,19,32
+bptree,search,20,40

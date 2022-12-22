@@ -1,10 +1,10 @@
 #include <iostream>
-#include "../../third-party/BPlusTree/src/BTree.hpp"
 #include "../../src/cpp/header/test_header.hpp"
+#include "../../third-party/BPlusTree/src/BTree.hpp"
 
+using namespace ds;
 using namespace std;
 using namespace chrono_literals;
-using namespace ds;
 
 // ./<program> <size_in_2_power_of> <do_skipping>
 // see `void check_main(int argc, char* argv[])`
