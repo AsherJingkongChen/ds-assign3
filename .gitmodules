@@ -7,3 +7,6 @@
 [submodule "third-party/ISheng"]
 	path = third-party/ISheng
 	url = git@github.com:AsherJingkongChen/datastucture.git
+[submodule "third-party/Treap"]
+	path = third-party/Treap
+	url = git@github.com:AsherJingkongChen/DuAlgorithm.git

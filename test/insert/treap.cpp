@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../../src/cpp/header/test_header.hpp"
-#include "../../third-party/Treap/dataStructure3/treap.cc"
+#include "../../third-party/Treap/Cpp/Treaps.h"
 
 using namespace ds;
 using namespace std;
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
   csv data({
     {"structure_name", "skiplist"},
-    {"operation_name", "search"},
+    {"operation_name", "insert"},
     {"size_in_2_power_of", argv[1]},
     {"time_in_millisecond", ""}
   });
@@ -41,22 +41,16 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  Treap
-
-  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert({rng(), rng()});
-  }
+  Treap<int> st;
 
   try {
     set_timeout(
       max_time,
       [&]() {
+        size_t t(from_2_power_of(size_in_2_power_of));
         clock.reset();
-        for (size_t t(100000); t--;) {
-          auto k(rng());
-          if (st.find(k) != st.end()) {
-            _ = k;
-          }
+        while (t--) {
+          st.insert(rng());
         }
         clock.pause();
       }
