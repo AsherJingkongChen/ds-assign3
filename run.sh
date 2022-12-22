@@ -25,5 +25,3 @@ for name in ${NAMES[@]}; do
     do_skipping=$?;
   done
 done
-
-./get_result.sh

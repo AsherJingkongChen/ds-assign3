@@ -10,7 +10,7 @@ else
   CXX="g++";
 fi
 
-CXX_FLAGS="-std=c++14 -O3 -Wall";
+CXX_FLAGS="-std=c++17 -O3 -Wall";
 NAMES=(
   "create_result_header"
   "bptree"
@@ -32,5 +32,6 @@ for name in ${NAMES[@]}; do
     echo "succeeded: $source_name";
   else
     echo "failed: $source_name";
+    exit 1;
   fi
 done

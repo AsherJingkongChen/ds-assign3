@@ -1,3 +1,6 @@
 [submodule "third-party/BPTree"]
 	path = third-party/BPTree
 	url = git@github.com:AsherJingkongChen/BPTree.git
+[submodule "third-party/BPlusTree"]
+	path = third-party/BPlusTree
+	url = git@github.com:AsherJingkongChen/BPlusTree.git

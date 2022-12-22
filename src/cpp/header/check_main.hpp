@@ -6,16 +6,12 @@
 
 namespace ds {
 
-static constexpr int EXITCODE_PASS = 0;
-static constexpr int EXITCODE_SKIP = 1;
-
 // test argument checker
-// ./<program> <size_in_2_power_of> <do_skipping>
+// ./<program> <size_in_2_power_of>
 // <size_in_2_power_of>: an integer in [10, 30]
-// <do_skipping>: a boolean integer
 //
 void check_main(int argc, char* argv[]) {
-  if (argc != 3) {
+  if (argc != 2) {
     throw std::invalid_argument(
       std::string("Missing arguments, usage: ") + 
       argv[0] + " <size_in_2_power_of> <do_skipping>\n"
@@ -30,16 +26,6 @@ void check_main(int argc, char* argv[]) {
     throw std::invalid_argument(
       "Invalid value for argument \"size_in_2_power_of\", "
       "it should be an integer from 10 to 30\n"
-    );
-  }
-
-  int do_skipping(std::stoi(argv[2]));
-  if (do_skipping != 0 &&
-      do_skipping != 1) {
-
-    throw std::invalid_argument(
-      "Invalid value for argument \"do_skipping\", "
-      "it should be an integer from 0 to 1\n"
     );
   }
 }

@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# before running this script, please enter `chmod +x get_result.sh`
+# before running this script, please enter `chmod +x result.sh`
 
 NAMES=(
   "bptree"
