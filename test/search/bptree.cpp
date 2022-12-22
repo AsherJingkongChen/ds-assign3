@@ -1,13 +1,13 @@
-#include <fstream>
 #include <iostream>
-#include "../third-party/BPlusTree/src/BTree.hpp"
-#include "../src/cpp/header/test_header.hpp"
+#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include "../../src/cpp/header/test_header.hpp"
 
 using namespace std;
 using namespace chrono_literals;
 using namespace ds;
 
 // ./<program> <size_in_2_power_of> <do_skipping>
+// see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
   check_main(argc, argv);
@@ -19,9 +19,9 @@ int main(int argc, char* argv[]) {
 
   csv data({
     {"structure_name", "bptree"},
+    {"operation_name", "search"},
     {"size_in_2_power_of", argv[1]},
-    {"insert_time_in_millisecond", ""},
-    {"search_time_in_millisecond", ""}
+    {"time_in_millisecond", ""}
   });
 
   // skip the test if `do_skipping` 
@@ -36,75 +36,42 @@ int main(int argc, char* argv[]) {
   //
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
-  auto max_time(500ms);
+  auto max_time(1h);
 
-  if (true) {
-    BTree<int, int> st;
-
-    set_timeout(max_time, // for test
-      // insert
-      //
-      [&]() {
-        size_t t(from_2_power_of(size_in_2_power_of));
-        clock.reset();
-        while (t--) {
-          st.insert(rng(), rng());
-        }
-        clock.pause();
-      },
-
-      // on success
-      //
-      [&]() {
-        clock.pause();
-        data["insert_time_in_millisecond"]
-          = to_string(clock.elapsed());
-      },
-      [](){}
-    );
+  // build structure
+  //
+  BTree<int, int> st;
+  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
+    st.insert(rng(), rng());
   }
 
-  if (true) {
-    BTree<int, int> st;
-    for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-      st.insert(rng(), rng());
-    }
-
-    set_timeout(max_time, // for test
-      // search
-      //
+  try {
+    set_timeout(
+      max_time,
       [&]() {
         clock.reset();
         for (size_t t(100000); t--;) {
           st.at(rng());
         }
         clock.pause();
-      },
-
-      // on success
-      //
-      [&]() {
-        clock.pause();
-        data["search_time_in_millisecond"]
-          = to_string(clock.elapsed());
-      },
-      [](){}
+      }
     );
-  }
 
-  // output the test result
-  //
-  cout << data.row_line() << flush;
+    clock.pause();
+    data["time_in_millisecond"] 
+      = to_string(clock.elapsed());
 
-  // if all test timed-out, 
-  // set true to `do_skipping` of the next test.
-  // all the following test will skip 
-  // bacause this early-exit pattern.
-  //
-  if (data[2].empty() && data[3].empty()) {
-    return EXITCODE_SKIP;
-
-  } else {
+    // output the test result
+    //
+    cout << data.row_line() << flush;
     return EXITCODE_PASS;
+
+  } catch (timeout_error &err) {
+    // if all test timed-out,
+    // leave the cell `time_in_millisecond` in data blank,
+    // and set true to `do_skipping` of all the following test.
+    //
+    cout << data.row_line() << flush;
+    return EXITCODE_SKIP;
   }
 }
