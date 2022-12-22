@@ -1,3 +1,6 @@
 [submodule "third-party/BPlusTree"]
 	path = third-party/BPlusTree
 	url = git@github.com:AsherJingkongChen/BPlusTree.git
+[submodule "third-party/Skiplist"]
+	path = third-party/Skiplist
+	url = git@github.com:AsherJingkongChen/libchef.git
