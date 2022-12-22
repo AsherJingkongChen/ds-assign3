@@ -5,19 +5,22 @@ FROM=10;
 TO=30;
 
 NAMES=(
-  "bptree"
+  "insert/bptree"
+  "search/bptree"
 );
 
 mkdir "output";
-mkdir "output/test-m";
+mkdir "output/test";
+mkdir "output/test/insert";
+mkdir "output/test/search";
 
 for name in ${NAMES[@]}; do
-  output_name="output/test-m/$name.log";
+  output_name="output/test/$name.log";
   > $output_name;
 
   do_skipping=0;
   for (( size=$FROM; size<=$TO; size++ )); do
-    binary_name="bin/test-m/$name";
+    binary_name="bin/test/$name";
     echo "testing: $binary_name $size $do_skipping" \
          ">> $output_name";
 
@@ -26,4 +29,4 @@ for name in ${NAMES[@]}; do
   done
 done
 
-./get_result.sh
+./result.sh
