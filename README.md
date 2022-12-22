@@ -4,7 +4,7 @@
 
 ### Third party libraries
 
-- B Plus Tree: [Forked](https://github.com/AsherJingkongChen/BPTree)
+- BPTree (B Plus Tree): [Forked](https://github.com/AsherJingkongChen/BPTree)
 from [SirLYC/BPTree](https://github.com/SirLYC/BPTree)
 
 ### File structure
