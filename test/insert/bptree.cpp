@@ -10,6 +10,7 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
+  int _;
   check_main(argc, argv);
 
   // parse argument

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../../src/cpp/header/test_header.hpp"
-#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include "../../third-party/Treap/dataStructure3/treap.cc"
 
 using namespace ds;
 using namespace std;
@@ -19,8 +19,8 @@ int main(int argc, char* argv[]) {
   bool do_skipping(stoi(argv[2]));
 
   csv data({
-    {"structure_name", "bptree"},
-    {"operation_name", "search"},
+    {"structure_name", "skiplist"},
+    {"operation_name", "insert"},
     {"size_in_2_power_of", argv[1]},
     {"time_in_millisecond", ""}
   });
@@ -41,21 +41,16 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  BTree<int, int> st;
-  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert(rng(), rng());
-  }
+  skiplist<int, int> st;
 
   try {
     set_timeout(
       max_time,
       [&]() {
+        size_t t(from_2_power_of(size_in_2_power_of));
         clock.reset();
-        for (size_t t(100000); t--;) {
-          auto k(rng());
-          if (st.find(k) != st.end()) {
-            _ = k;
-          }
+        while (t--) {
+          st.insert({rng(), rng()});
         }
         clock.pause();
       }

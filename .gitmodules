@@ -4,3 +4,6 @@
 [submodule "third-party/Skiplist"]
 	path = third-party/Skiplist
 	url = git@github.com:AsherJingkongChen/libchef.git
+[submodule "third-party/Treap"]
+	path = third-party/Treap
+	url = git@github.com:AsherJingkongChen/datastucture.git
