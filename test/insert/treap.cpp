@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         size_t t(from_2_power_of(size_in_2_power_of));
         clock.reset();
         while (t--) {
-          st.insert(rng());
+          st.ins(rng());
         }
         clock.pause();
       }

@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
   Treap<int> st;
 
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert(rng());
+    st.ins(rng());
   }
 
   try {
