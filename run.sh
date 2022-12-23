@@ -17,6 +17,7 @@ for name in ${NAMES[@]}; do
   output_name="output/test/$name.log";
   > $output_name;
 
+  is_first_skip=1;
   do_skipping=0;
   for (( size=$FROM; size<=$TO; size++ )); do
     binary_name="bin/test/$name";
@@ -26,6 +27,17 @@ for name in ${NAMES[@]}; do
 
     timeout $TIMEOUT_SECOND \
     $binary_name $size $do_skipping >> $output_name;
+
     do_skipping=$?;
+
+    if [ $is_first_skip -eq 1 ] && 
+       [ $do_skipping   -ne 0 ]; then
+
+      timeout $TIMEOUT_SECOND \
+      $binary_name $size $do_skipping >> $output_name;
+
+      is_first_skip=0;
+    fi
+
   done
 done
