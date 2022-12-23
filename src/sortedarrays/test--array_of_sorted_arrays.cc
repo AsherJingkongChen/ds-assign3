@@ -1,4 +1,4 @@
-#include "array_of_sorted_arrays.h"
+#include "array_of_sorted_arrays.hpp"
 
 using ds::sorted_array;
 
