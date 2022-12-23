@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
     cout << data.row_line() << flush;
     return EXITCODE_PASS;
 
-  } catch (timeout_error &err) {
+  } catch (const char*) {
     // if all test timed-out,
     // leave the cell `time_in_millisecond` in data blank,
     // and set true to `do_skipping` of all the following test.

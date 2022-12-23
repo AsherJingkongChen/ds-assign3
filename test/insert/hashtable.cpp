@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../general/test_header.hpp"
-#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include <unordered_map>
+#include "../../src/cpp/header/test_header.hpp"
 
 using namespace ds;
 using namespace std;
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
   bool do_skipping(stoi(argv[2]));
 
   csv data({
-    {"structure_name", "bptree"},
+    {"structure_name", "hashtable"},
     {"operation_name", "insert"},
     {"size_in_2_power_of", argv[1]},
     {"time_in_millisecond", ""}
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  BTree<int, int> st;
+  unordered_map<int, int> st;
 
   try {
     set_timeout(
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         size_t t(from_2_power_of(size_in_2_power_of));
         clock.reset();
         while (t--) {
-          st.insert(rng(), rng());
+          st.emplace(rng(), rng());
         }
         clock.pause();
       }

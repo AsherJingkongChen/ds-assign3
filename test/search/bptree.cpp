@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../src/cpp/header/test_header.hpp"
+#include "../general/test_header.hpp"
 #include "../../third-party/BPlusTree/src/BTree.hpp"
 
 using namespace ds;
@@ -33,11 +33,10 @@ int main(int argc, char* argv[]) {
     return EXITCODE_SKIP;
   }
 
-  // timer set
+  // setup
   //
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
-  auto max_time(1h);
 
   // build structure
   //
@@ -46,36 +45,22 @@ int main(int argc, char* argv[]) {
     st.insert(rng(), rng());
   }
 
-  try {
-    set_timeout(
-      max_time,
-      [&]() {
-        clock.reset();
-        for (size_t t(100000); t--;) {
-          auto k(rng());
-          if (st.find(k) != st.end()) {
-            _ = k;
-          }
-        }
-        clock.pause();
-      }
-    );
-
-    clock.pause();
-    data["time_in_millisecond"] 
-      = to_string(clock.elapsed());
-
-    // output the test result
-    //
-    cout << data.row_line() << flush;
-    return EXITCODE_PASS;
-
-  } catch (timeout_error &err) {
-    // if all test timed-out,
-    // leave the cell `time_in_millisecond` in data blank,
-    // and set true to `do_skipping` of all the following test.
-    //
-    cout << data.row_line() << flush;
-    return EXITCODE_SKIP;
+  // start test
+  //
+  clock.reset();
+  for (size_t t(100000); t--;) {
+    auto k(rng());
+    if (st.find(k) != st.end()) {
+      _ = k;
+    }
   }
+  clock.pause();
+
+  data["time_in_millisecond"]
+    = to_string(clock.elapsed());
+
+  // output the test result
+  //
+  cout << data.row_line() << flush;
+  return EXITCODE_PASS;
 }
