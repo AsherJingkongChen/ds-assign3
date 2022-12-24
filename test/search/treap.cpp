@@ -1,5 +1,6 @@
+#include <fstream>
 #include <iostream>
-#include "../general/test_header.hpp"
+#include "../general/general.hpp"
 #include "../../third-party/Treap/Cpp/Treaps.h"
 
 using namespace ds;
@@ -10,7 +11,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -42,10 +42,15 @@ int main(int argc, char* argv[]) {
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
 
+  // prevent O3 ignoring unused return value 
+  // from const method
+  //
+  bool trash_item;
+  ofstream trash(".trash");
+
   // build structure
   //
   Treap<int> st;
-
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
     st.ins(rng());
   }
@@ -54,13 +59,12 @@ int main(int argc, char* argv[]) {
   //
   clock.reset();
   for (size_t t(100000); t--;) {
-    auto k(rng());
-    if (st.find(k)) {
-      _ = k;
-    }
+    trash_item = st.find(rng());
   }
   clock.pause();
-  
+
+  trash << trash_item << flush;
+
   data["time_in_millisecond"] 
     = to_string(clock.elapsed());
 

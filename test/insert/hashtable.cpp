@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unordered_map>
-#include "../general/test_header.hpp"
+#include "../general/general.hpp"
 
 using namespace ds;
 using namespace std;
@@ -10,7 +10,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -44,7 +43,7 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  unordered_map<int, int> st;
+  std::unordered_map<int, int> st;
 
   // start test
   //

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../general/test_header.hpp"
-#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include "../general/general.hpp"
+#include "../../third-party/BTree/btree/map.h"
 
 using namespace ds;
 using namespace std;
@@ -10,7 +10,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -25,7 +24,7 @@ int main(int argc, char* argv[]) {
     "time_in_millisecond"
   });
 
-  data[0] = "bptree";
+  data[0] = "btree";
   data[1] = "insert";
   data[2] = argv[1];
 
@@ -44,14 +43,14 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  BTree<int, int> st;
+  btree::map<int, int> st;
 
   // start test
   //
   clock.reset();
   size_t t(from_2_power_of(size_in_2_power_of));
   while (t--) {
-    st.insert(rng(), rng());
+    st.insert({rng(), rng()});
   }
   clock.pause();
 

@@ -1,6 +1,7 @@
+#include <fstream>
 #include <iostream>
 #include <unordered_map>
-#include "../general/test_header.hpp"
+#include "../general/general.hpp"
 
 using namespace ds;
 using namespace std;
@@ -10,7 +11,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -42,9 +42,15 @@ int main(int argc, char* argv[]) {
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
 
+  // prevent O3 ignoring unused return value 
+  // from const method
+  //
+  bool trash_item;
+  ofstream trash(".trash");
+
   // build structure
   //
-  unordered_map<int, int> st;
+  std::unordered_map<int, int> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
     st.emplace(rng(), rng());
   }
@@ -53,12 +59,11 @@ int main(int argc, char* argv[]) {
   //
   clock.reset();
   for (size_t t(100000); t--;) {
-    auto k(rng());
-    if (st.find(k) != st.end()) {
-      _ = k;
-    }
+    trash_item = (st.find(rng()) != st.end());
   }
   clock.pause();
+
+  trash << trash_item << flush;
 
   data["time_in_millisecond"] 
     = to_string(clock.elapsed());

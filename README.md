@@ -4,9 +4,21 @@
 
 ### Third party libraries
 
-- bptree, BPlusTree or B+Tree: Forked
-from [skyzh/BPlusTree](https://github.com/skyzh/BPlusTree)
-to [AsherJingkongChen/BPlusTree](https://github.com/AsherJingkongChen/BPlusTree)
+- stname: forked
+from [from]()
+to [to]()
+
+- stname: forked
+from [from]()
+to [to]()
+
+- stname: forked
+from [from]()
+to [to]()
+
+- stname: standard c++ library
+from [from]()
+
 ### File structure
 
 ```

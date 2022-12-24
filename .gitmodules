@@ -1,6 +1,3 @@
-[submodule "third-party/BPlusTree"]
-	path = third-party/BPlusTree
-	url = git@github.com:AsherJingkongChen/BPlusTree.git
 [submodule "third-party/Skiplist"]
 	path = third-party/Skiplist
 	url = git@github.com:AsherJingkongChen/libchef.git
@@ -10,3 +7,6 @@
 [submodule "third-party/Treap"]
 	path = third-party/Treap
 	url = git@github.com:AsherJingkongChen/DuAlgorithm.git
+[submodule "third-party/BTree"]
+	path = third-party/BTree
+	url = git@github.com:AsherJingkongChen/cpp-btree.git

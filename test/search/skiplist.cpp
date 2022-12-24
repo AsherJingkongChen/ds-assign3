@@ -1,17 +1,16 @@
+#include <fstream>
 #include <iostream>
-#include "../general/test_header.hpp"
+#include "../general/general.hpp"
 #include "../../third-party/Skiplist/include/chef_base/chef_skiplist.hpp"
 
 using namespace ds;
 using namespace std;
-using namespace chef;
 using namespace chrono_literals;
 
 // ./<program> <size_in_2_power_of> <do_skipping>
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -43,9 +42,15 @@ int main(int argc, char* argv[]) {
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
 
+  // prevent O3 ignoring unused return value 
+  // from const method
+  //
+  bool trash_item;
+  ofstream trash(".trash");
+
   // build structure
   //
-  skiplist<int, int> st;
+  chef::skiplist<int, int> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
     st.insert({rng(), rng()});
   }
@@ -53,13 +58,12 @@ int main(int argc, char* argv[]) {
   // start test
   clock.reset();
   for (size_t t(100000); t--;) {
-    auto k(rng());
-    if (st.find(k) != st.end()) {
-      _ = k;
-    }
+    trash_item = (st.find(rng()) != st.end());
   }
   clock.pause();
-  
+
+  trash << trash_item << flush;
+
   data["time_in_millisecond"] 
     = to_string(clock.elapsed());
 

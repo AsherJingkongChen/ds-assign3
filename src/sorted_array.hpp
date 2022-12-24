@@ -6,7 +6,6 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
-#include <typeinfo> // debug
 
 #undef ENABLE_TEST
 #define ENABLE_TEST 0
@@ -24,7 +23,6 @@
   #define dprint(...) void(0);
 #endif // ENABLE_TEST
 
-// namespace ds, the scope for Data Structure designs
 namespace ds {
 
 // introduction of namespace std
@@ -53,7 +51,29 @@ public: // type
   typedef typename base_type::reverse_iterator        reverse_iterator;
   typedef typename base_type::const_reverse_iterator  const_reverse_iterator;
 
-public: // preoperty
+public: // read-only iterator
+  using base_type::cbegin;
+  using base_type::cend;
+  using base_type::crbegin;
+  using base_type::crend;
+
+  inline const_iterator begin() const noexcept {
+    return cbegin();
+  }
+
+  inline const_iterator end() const noexcept {
+    return cend();
+  }
+
+  inline const_reverse_iterator rbegin() const noexcept {
+    return crbegin();
+  }
+
+  inline const_reverse_iterator rend() const noexcept {
+    return crend();
+  }
+
+public: // property
   using base_type::size;
   using base_type::empty;
   using base_type::capacity;
@@ -82,14 +102,18 @@ private: // data
   compare_type __compare;
 
 public: // open interface
+  using base_type::erase; // no reallocation
+
   inline void double_cap() noexcept {
     reserve(cap() << 1);
   }
 
+  // minimum required capacity: 1
+  //
   void halve_cap() noexcept {
     size_type new_cap(
       std::max(
-        cap() >> 1, 
+        cap() >> 1,
         static_cast<size_type>(1)
       )
     );
@@ -100,18 +124,55 @@ public: // open interface
     }
   }
 
-  const_iterator find(const_reference value) {
-    
+  // performs binary search using const_reference
+  // if const_iterator `iter` satisfies `*iter == value`
+  // returns `iter`; otherwise returns `cend()`
+  //
+  const_iterator find(const_reference value) const {
+    const_iterator 
+    iter(
+      std::lower_bound(cbegin(), cend(), value, __compare)
+    ),
+    iter_end(cend());
+
+    if (iter != iter_end && 
+        not __compare(value, *iter)) {
+
+      return iter;
+    }
+    return iter_end;
   }
 
-// * use_of_from    = min(to.cap() - to.size(), from.size())
-// * use_of_to      = to.size()
-// * cap_of_result  = to.cap()
-// 
-// ### requirements: 
-//     cap_of_result == to.cap()
-//                   >= use_of_to + use_of_from
-//
+  // ## brief:
+  //
+  // if `from` is not empty and `to` is not full,
+  // it merges `from` into `to` and returns true
+  // (back part or all of `from` are used)
+  //
+  // otherwise returns false
+  // 
+  // ## detail:
+  //
+  // * use_from    = min(to.cap() - to.size(), from.size())
+  // * use_to      = to.size()
+  // * cap_result  = to.cap()
+  // * from_it     = from.end() - use_from
+  // (it moves the back part of `from`)
+  //
+  // * to_it       = to.begin()
+  //
+  // in the only while loop, 
+  // it compares `from_it` and `to_it`, 
+  // and then pushs back to `result`
+  // 
+  // when loop ends, it checks `from_it` and `to_it`,
+  // and copies the remaining part of either them to `result`
+  // 
+  // finally, it replaces `to` with `result`
+  //
+  // ### assertion: 
+  //     cap_result == to.cap() >= use_to + use_from
+  //
   friend bool merge(
       sorted_array const &from,
       sorted_array &to) { dprint("merge(copy)\n");
@@ -397,34 +458,16 @@ protected: // internal interface
   using base_type::push_back;
   using base_type::shrink_to_fit;
 
-public: // open read-only iterator
-  using base_type::cbegin;
-  using base_type::cend;
-  using base_type::crbegin;
-  using base_type::crend;
-
-  inline const_iterator begin() const noexcept {
-    return cbegin();
-  }
-
-  inline const_iterator end() const noexcept {
-    return cend();
-  }
-
-  inline const_reverse_iterator rbegin() const noexcept {
-    return crbegin();
-  }
-
-  inline const_reverse_iterator rend() const noexcept {
-    return crend();
-  }
-
 public: // custom simple build
+  // initial capacity: 1
+  // initial size: 0 or 1
+  //
   sorted_array(const_reference initial):
       base_type(),
       __compare() { dprint("build(const_reference)\n");
 
     push_back(initial);
+    reserve(1);
   }
 
   sorted_array(right_reference initial) noexcept:
@@ -432,6 +475,7 @@ public: // custom simple build
       __compare() { dprint("build(right_reference)\n");
 
     push_back(move(initial));
+    reserve(1);
   }
 
   sorted_array(compare_type const &compare):
@@ -457,6 +501,7 @@ public: // custom complicated build
       __compare(compare) { dprint("build(const_reference, compare_type const &)\n");
 
     push_back(initial);
+    reserve(1);
   }
 
   sorted_array(
@@ -467,6 +512,7 @@ public: // custom complicated build
       __compare(compare) { dprint("build(right_reference, compare_type const &)\n");
 
     push_back(move(initial));
+    reserve(1);
   }
 
   sorted_array(
@@ -477,6 +523,7 @@ public: // custom complicated build
       __compare(move(compare)) { dprint("build(const_reference, compare_type &&)\n");
 
     push_back(initial);
+    reserve(1);
   }
 
   sorted_array(
@@ -487,6 +534,7 @@ public: // custom complicated build
       __compare(move(compare)) { dprint("build(right_reference, compare_type &&)\n");
 
     push_back(move(initial));
+    reserve(1);
   }
 
 public: // general build

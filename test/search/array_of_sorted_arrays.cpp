@@ -1,6 +1,7 @@
+#include <fstream>
 #include <iostream>
 #include "../general/general.hpp"
-#include "../../third-party/Skiplist/include/chef_base/chef_skiplist.hpp"
+#include "../../src/array_of_sorted_arrays.hpp"
 
 using namespace ds;
 using namespace std;
@@ -24,8 +25,8 @@ int main(int argc, char* argv[]) {
     "time_in_millisecond"
   });
 
-  data[0] = "skiplist";
-  data[1] = "insert";
+  data[0] = "array_of_sorted_arrays";
+  data[1] = "search";
   data[2] = argv[1];
 
   // skip the test if `do_skipping` 
@@ -41,20 +42,30 @@ int main(int argc, char* argv[]) {
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
 
+  // prevent O3 ignoring unused return value 
+  // from const method
+  //
+  int trash_item;
+  ofstream trash(".trash");
+
   // build structure
   //
-  chef::skiplist<int, int> st;
+  ds::array_of_sorted_arrays<int> st;
+  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
+    st.insert(rng());
+  }
 
   // start test
   //
-  size_t t(from_2_power_of(size_in_2_power_of));
   clock.reset();
-  while (t--) {
-    st.insert({rng(), rng()});
+  for (size_t t(100000); t--;) {
+    trash_item += (st.find(rng()) != st.end());
   }
   clock.pause();
 
-  data["time_in_millisecond"] 
+  trash << trash_item << flush;
+
+  data["time_in_millisecond"]
     = to_string(clock.elapsed());
 
   // output the test result

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../general/test_header.hpp"
+#include "../general/general.hpp"
 #include "../../third-party/Treap/Cpp/Treaps.h"
 
 using namespace ds;
@@ -10,7 +10,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument

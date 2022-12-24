@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../general/general.hpp"
-#include "../../third-party/Skiplist/include/chef_base/chef_skiplist.hpp"
+#include "../../src/array_of_sorted_arrays.hpp"
 
 using namespace ds;
 using namespace std;
@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     "time_in_millisecond"
   });
 
-  data[0] = "skiplist";
+  data[0] = "array_of_sorted_arrays";
   data[1] = "insert";
   data[2] = argv[1];
 
@@ -43,14 +43,14 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  chef::skiplist<int, int> st;
+  ds::array_of_sorted_arrays<int> st;
 
   // start test
   //
-  size_t t(from_2_power_of(size_in_2_power_of));
   clock.reset();
+  size_t t(from_2_power_of(size_in_2_power_of));
   while (t--) {
-    st.insert({rng(), rng()});
+    st.insert(rng());
   }
   clock.pause();
 

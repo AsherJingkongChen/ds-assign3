@@ -1,6 +1,7 @@
+#include <fstream>
 #include <iostream>
-#include "../general/test_header.hpp"
-#include "../../third-party/BPlusTree/src/BTree.hpp"
+#include "../general/general.hpp"
+#include "../../third-party/Btree/btree/map.h"
 
 using namespace ds;
 using namespace std;
@@ -10,7 +11,6 @@ using namespace chrono_literals;
 // see `void check_main(int argc, char* argv[])`
 //
 int main(int argc, char* argv[]) {
-  int _;
   check_main(argc, argv);
 
   // parse argument
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     "time_in_millisecond"
   });
 
-  data[0] = "bptree";
+  data[0] = "btree";
   data[1] = "search";
   data[2] = argv[1];
 
@@ -42,23 +42,28 @@ int main(int argc, char* argv[]) {
   urng<int> rng(1, 1 << 30);
   timer<timeunit::msec> clock;
 
+  // prevent O3 ignoring unused return value 
+  // from const method
+  //
+  bool trash_item;
+  ofstream trash(".trash");
+
   // build structure
   //
-  BTree<int, int> st;
+  btree::map<int, int> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert(rng(), rng());
+    st.insert({rng(), rng()});
   }
 
   // start test
   //
   clock.reset();
   for (size_t t(100000); t--;) {
-    auto k(rng());
-    if (st.find(k) != st.end()) {
-      _ = k;
-    }
+    trash_item = (st.find(rng()) != st.end());
   }
   clock.pause();
+
+  trash << trash_item << flush;
 
   data["time_in_millisecond"]
     = to_string(clock.elapsed());

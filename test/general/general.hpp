@@ -1,5 +1,5 @@
-#ifndef TEST_HEADER
-#define TEST_HEADER
+#ifndef GENERAL
+#define GENERAL
 
 #include "csv_row.hpp"
 #include "timer.hpp"
@@ -8,4 +8,4 @@
 #include "conversion_for_2_power_of.hpp"
 #include "uniform_random_number_generator.hpp"
 
-#endif // TEST_HEADER
+#endif // GENERAL

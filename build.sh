@@ -16,7 +16,7 @@ if [ $# -ge 2 ]; then
 fi
 
 echo "using CXX compiler and CXXFLAGS:";
-$CXX FCXXFLAGS --version;
+$CXX $CXXFLAGS --version;
 
 [ ! -d "bin" ] && mkdir "bin";
 [ ! -d "bin/test" ] && mkdir "bin/test";
