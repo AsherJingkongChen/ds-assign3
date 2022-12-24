@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "../general/general.hpp"
-#include "../../third-party/Btree/btree/map.h"
+#include "../../third-party/Btree/btree/set.h"
 
 using namespace ds;
 using namespace std;
@@ -43,23 +43,23 @@ int main(int argc, char* argv[]) {
   timer<timeunit::msec> clock;
 
   // prevent O3 ignoring unused return value 
-  // from const method
+  // from const methods
   //
-  bool trash_item;
+  int trash_item;
   ofstream trash(".trash");
 
   // build structure
   //
-  btree::map<int, int> st;
+  btree::set<int> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert({rng(), rng()});
+    st.insert(rng());
   }
 
   // start test
   //
   clock.reset();
   for (size_t t(100000); t--;) {
-    trash_item = (st.find(rng()) != st.end());
+    trash_item += (st.find(rng()) != st.end());
   }
   clock.pause();
 

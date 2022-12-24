@@ -43,22 +43,22 @@ int main(int argc, char* argv[]) {
   timer<timeunit::msec> clock;
 
   // prevent O3 ignoring unused return value 
-  // from const method
+  // from const methods
   //
-  bool trash_item;
+  int trash_item;
   ofstream trash(".trash");
 
   // build structure
   //
-  chef::skiplist<int, int> st;
+  chef::skiplist<int, bool> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert({rng(), rng()});
+    st.insert({rng(), false});
   }
 
   // start test
   clock.reset();
   for (size_t t(100000); t--;) {
-    trash_item = (st.find(rng()) != st.end());
+    trash_item += (st.find(rng()) != st.end());
   }
   clock.pause();
 

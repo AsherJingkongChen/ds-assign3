@@ -47,9 +47,8 @@ int main(int argc, char* argv[]) {
 
   // start test
   //
-  size_t t(from_2_power_of(size_in_2_power_of));
   clock.reset();
-  while (t--) {
+  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
     st.ins(rng());
   }
   clock.pause();

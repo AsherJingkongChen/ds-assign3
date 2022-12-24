@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../general/general.hpp"
-#include "../../third-party/BTree/btree/map.h"
+#include "../../third-party/BTree/btree/set.h"
 
 using namespace ds;
 using namespace std;
@@ -43,14 +43,13 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  btree::map<int, int> st;
+  btree::set<int> st;
 
   // start test
   //
   clock.reset();
-  size_t t(from_2_power_of(size_in_2_power_of));
-  while (t--) {
-    st.insert({rng(), rng()});
+  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
+    st.insert(rng());
   }
   clock.pause();
 

@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # before running this script, please enter `chmod +x run.sh`
 
-source .config;
+source config.sh;
 
 # check timeout command
 #

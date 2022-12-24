@@ -14,7 +14,7 @@
   #include <assert.h>
 
   #undef dprint
-  #define dprint(...) printf(__VA_ARGS__)
+  #define dprint(...) fprintf(stderr, __VA_ARGS__)
 #else
   #undef assert
   #define assert(...) void(0);
@@ -57,19 +57,19 @@ public: // read-only iterator
   using base_type::crbegin;
   using base_type::crend;
 
-  inline const_iterator begin() const noexcept {
+  const_iterator begin() const noexcept {
     return cbegin();
   }
 
-  inline const_iterator end() const noexcept {
+  const_iterator end() const noexcept {
     return cend();
   }
 
-  inline const_reverse_iterator rbegin() const noexcept {
+  const_reverse_iterator rbegin() const noexcept {
     return crbegin();
   }
 
-  inline const_reverse_iterator rend() const noexcept {
+  const_reverse_iterator rend() const noexcept {
     return crend();
   }
 
@@ -78,23 +78,23 @@ public: // property
   using base_type::empty;
   using base_type::capacity;
 
-  inline size_type cap() const noexcept {
+  size_type cap() const noexcept {
     return capacity();
   }
 
-  inline size_type vacancy() const noexcept {
+  size_type vacancy() const noexcept {
     return cap() - size();
   }
 
-  inline bool full() const noexcept {
+  bool full() const noexcept {
     return cap() == size();
   }
 
-  inline explicit operator base_type() const {
+  explicit operator base_type() const {
     return *this;
   }
 
-  inline base_type to_vector() const {
+  base_type to_vector() const {
     return static_cast<base_type>(*this);
   }
 
@@ -104,7 +104,7 @@ private: // data
 public: // open interface
   using base_type::erase; // no reallocation
 
-  inline void double_cap() noexcept {
+  void double_cap() noexcept {
     reserve(cap() << 1);
   }
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_map>
+#include <unordered_set>
 #include "../general/general.hpp"
 
 using namespace ds;
@@ -43,14 +43,13 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  std::unordered_map<int, int> st;
+  std::unordered_set<int> st;
 
   // start test
   //
-  size_t t(from_2_power_of(size_in_2_power_of));
   clock.reset();
-  while (t--) {
-    st.emplace(rng(), rng());
+  for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
+    st.insert(rng());
   }
   clock.pause();
   

@@ -1,3 +1,6 @@
+#! /usr/bin/env bash
+# before running this script, please enter `chmod +x config.sh`
+
 chmod +x *.sh;
 
 [ -f ~/.zshrc ] && source ~/.zshrc;
@@ -14,20 +17,20 @@ CXXFLAGS=\
 -w";
 
 NAMES=(
-  "insert/btree"
-  "search/btree"
-  "insert/skiplist"
-  "search/skiplist"
-  "insert/treap"
-  "search/treap"
-  "insert/hashtable"
-  "search/hashtable"
   "insert/array_of_sorted_arrays"
+  "insert/btree"
+  "insert/hashtable"
+  "insert/skiplist"
+  "insert/treap"
   "search/array_of_sorted_arrays"
+  "search/btree"
+  "search/hashtable"
+  "search/skiplist"
+  "search/treap"
 );
 
-FROM=10; TO=20;
-TIMEOUT_SECOND=3600;
+FROM=10; TO=30;
+TIMEOUT_SECOND=1;
 
 RESULT_HEADER=\
 "structure_name,\

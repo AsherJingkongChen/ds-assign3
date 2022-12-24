@@ -43,9 +43,9 @@ int main(int argc, char* argv[]) {
   timer<timeunit::msec> clock;
 
   // prevent O3 ignoring unused return value 
-  // from const method
+  // from const methods
   //
-  bool trash_item;
+  int trash_item;
   ofstream trash(".trash");
 
   // build structure
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
   //
   clock.reset();
   for (size_t t(100000); t--;) {
-    trash_item = st.find(rng());
+    trash_item += st.find(rng());
   }
   clock.pause();
 

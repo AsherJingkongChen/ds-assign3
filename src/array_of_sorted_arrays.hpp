@@ -8,7 +8,7 @@
 namespace ds {
 
 // to maintain the entire array's structure,
-// it is important to keep shorter arrays vacant
+// it is important to keep shorter arrays empty
 //
 template<
   typename _Tp, 
@@ -87,6 +87,17 @@ public: // open type
   typedef const_reverse_iterator  reverse_iterator;
 
 public: // read-only iterator
+  // const_iterator is actually
+  // std::pair<
+  //   base_type::const_iterator, 
+  //   block_type::const_iterator
+  // >
+  //
+  // the usage of this kind of iterator
+  // resembles to std::pair
+  //
+  // [TODO]: no viable increment operator on iterator types
+  //
   const_iterator cbegin() const noexcept {
     return const_iterator(
       base_type::cbegin(),
@@ -132,27 +143,54 @@ public: // read-only iterator
   }
 
 public: // property
-  using base_type::size;
-  using base_type::empty;
-  using base_type::capacity;
+  // size and capacity is 
+  // the total of sorted_arrays
+  //
+  // note that capacity is always (the power of 2) - 1
+  //
+  size_type size() const {
+    size_type result(0);
 
-  inline size_type cap() const noexcept {
+    typename base_type::const_iterator
+    base_it(base_type::cbegin()),
+    base_end(base_type::cend());
+
+    for (; base_it != base_end; base_it++) {
+      result += base_it->size();
+    }
+    return result;
+  }
+
+  size_type capacity() const {
+    size_type result(0);
+
+    typename base_type::const_iterator
+    base_it(base_type::cbegin()),
+    base_end(base_type::cend());
+
+    for (; base_it != base_end; base_it++) {
+      result += base_it->capacity();
+    }
+    return result;
+  }
+
+  size_type cap() const {
     return capacity();
   }
 
-  inline size_type vacancy() const noexcept {
-    return cap() - size();
+  bool empty() const {
+    return size() == 0;
   }
 
-  inline bool full() const noexcept {
+  bool full() const {
     return cap() == size();
   }
 
-  inline explicit operator base_type() const {
+  explicit operator base_type() const {
     return *this;
   }
 
-  inline base_type to_vector() const {
+  base_type to_vector() const {
     return static_cast<base_type>(*this);
   }
 
@@ -160,19 +198,28 @@ private: // data
   compare_type __compare;
 
 public: // interface
+  // insert
   // `target` = new sorted_array with one inserted `value`
+  //            and capacity 2
   //
   // `target` walk from the shortest sorted_array
   // to the following longer ones each iteration
   //
+  // the iteration ends at base array's `cend()`
+  //
   // `insert()` do the opposite to `erase()`,
-  // `target` prones to clear itself
-  // (it's for maintaining the entire structure to 
-  //  keep shorter arrays vacant)
+  // `target` prones to clear itself 
+  // but also clear other sorted_arrays
+  //
+  // it's for placing the new value and 
+  // maintaining the entire structure
+  // *keep shorter sorted_arrays empty*
   //
   // note that in each iteration,
   // `target` has always the double capacity to
   // the other sorted_array
+  //
+  // [DETAIL]
   //
   // if merging `target` to the other sorted_array succeeds:
   //   if `target` is empty:
@@ -183,9 +230,9 @@ public: // interface
   //   the iteration continues
   //
   // before going to the next iteration:
-  //   `target` gets capacity doubled
+  //   `target` gets the capacity doubled
   //
-  // a new sorted_array will be built 
+  // only one new sorted_array will be constructed
   // if the iteration is over and `target` is not empty
   //
   void insert(const_reference value) {
@@ -201,10 +248,10 @@ public: // interface
         if (target.empty()) {
           return;
         }
-      } else if (merge(move(*base_other), target)) {
       } else {
-        throw "bug";
+        merge(move(*base_other), target);
       }
+
       target.double_cap();
     }
 
@@ -213,12 +260,16 @@ public: // interface
       //
       target.halve_cap();
       push_back(target);
+      shrink_to_fit();
     }
   }
 
+  // find
   // it returns the first found const_iterator `it`
   // that walk from the shortest sorted_array 
   // to the following longer ones and `*it == value`
+  //
+  // the iteration ends at base array's `cend()`
   //
   const_iterator find(const_reference value) const {
     typename base_type::const_iterator
@@ -237,15 +288,21 @@ public: // interface
     return cend();
   }
 
+  // erase
   // `target` = erased sorted_array
   //
   // `target` walk from the shortest sorted_array
   // to the following longer ones each iteration
   //
+  // the iteration ends at `target`
+  //
   // `erase()` do the opposite to `insert()`,
   // `target` prones to fulfill itself
-  // (it's for maintaining the entire structure to 
-  //  keep shorter arrays vacant)
+  //
+  // it's for maintaining the entire structure
+  // *keep shorter arrays empty*
+  //
+  // [DETAIL]
   //
   // if merging the other sorted_array to `target` succeeds:
   //   if `target` is fulfilled:
@@ -255,6 +312,11 @@ public: // interface
   //
   // if `pos` is not dereferenceable, 
   // this method does no effect
+  //
+  // `erase()` does not reallocate
+  //
+  // [TODO]: currently, there's no viable `shrink_to_fit()` 
+  //         to make memory management more efficient
   //
   void erase(const_iterator pos) {
     if (pos->first == cend()->first) {
@@ -291,7 +353,6 @@ public: // interface
   }
 
 protected: // internal interface
-  using base_type::reserve;
   using base_type::push_back;
   using base_type::shrink_to_fit;
 

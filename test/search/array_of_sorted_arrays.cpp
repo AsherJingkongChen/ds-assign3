@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
   timer<timeunit::msec> clock;
 
   // prevent O3 ignoring unused return value 
-  // from const method
+  // from const methods
   //
   int trash_item;
   ofstream trash(".trash");
