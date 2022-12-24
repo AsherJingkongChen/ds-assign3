@@ -248,6 +248,7 @@ public: // interface
         if (target.empty()) {
           return;
         }
+
       } else {
         merge(move(*base_other), target);
       }
