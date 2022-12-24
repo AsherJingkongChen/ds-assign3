@@ -9,6 +9,8 @@
 - general: Myself
   - test file name: `general.hpp`
 
+- shell scripts: Myself
+
 ### External libraries
 
 - B-Tree: GitHub, forked from [Kronuz/cpp-btree](https://github.com/Kronuz/cpp-btree) to [AsherJingkongChen/cpp-btree](https://github.com/AsherJingkongChen/cpp-btree)
