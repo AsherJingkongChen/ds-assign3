@@ -104,13 +104,13 @@ private: // data
 public: // open interface
   using base_type::erase; // no reallocation
 
-  void double_cap() noexcept {
+  void double_cap() noexcept { dprint("cap(*2)\n");
     reserve(cap() << 1);
   }
 
   // minimum required capacity: 1
   //
-  void halve_cap() noexcept {
+  void halve_cap() noexcept { dprint("cap(/2)\n");
     size_type new_cap(
       std::max(
         cap() >> 1,
@@ -124,11 +124,13 @@ public: // open interface
     }
   }
 
+  // find
+  //
   // performs binary search using const_reference
   // if const_iterator `iter` satisfies `*iter == value`
   // returns `iter`; otherwise returns `cend()`
   //
-  const_iterator find(const_reference value) const {
+  const_iterator find(const_reference value) const { dprint("find(value)\n");
     const_iterator 
     iter(
       std::lower_bound(cbegin(), cend(), value, __compare)
@@ -143,7 +145,7 @@ public: // open interface
     return iter_end;
   }
 
-  // ## brief:
+  // merge
   //
   // if `from` is not empty and `to` is not full,
   // it merges `from` into `to` and returns true
@@ -151,7 +153,7 @@ public: // open interface
   //
   // otherwise returns false
   // 
-  // ## detail:
+  // [DETAIL]
   //
   // * use_from    = min(to.cap() - to.size(), from.size())
   // * use_to      = to.size()
@@ -175,13 +177,13 @@ public: // open interface
   //
   friend bool merge(
       sorted_array const &from,
-      sorted_array &to) { dprint("merge(copy)\n");
+      sorted_array &to) { dprint("merge(copy)");
 
-    if (from.empty()) { dprint("merge(copy): from.empty() --> return false\n");
+    if (from.empty()) { dprint(": from.empty() --> return false\n");
       return false;
     }
 
-    if (to.full()) { dprint("merge(copy): to.full() --> return false\n");
+    if (to.full()) { dprint(": to.full() --> return false\n");
       return false;
     }
 
@@ -223,22 +225,23 @@ public: // open interface
     assert(result.capacity() == to.capacity());
 
     to.base_type::operator=(move(result));
+    dprint(" --> return true\n");
     return true;
   }
 
   friend bool merge(
       sorted_array &&from,
-      sorted_array &to) noexcept { dprint("merge(move)\n");
+      sorted_array &to) noexcept { dprint("merge(move)");
 
-    if (&from == &to) { dprint("merge(move): cannot merge self --> return false\n");
+    if (&from == &to) { dprint(": cannot merge self --> return false\n");
       return false;
     }
 
-    if (from.empty()) { dprint("merge(move): from.empty() --> return false\n");
+    if (from.empty()) { dprint(": from.empty() --> return false\n");
       return false;
     }
 
-    if (to.full()) { dprint("merge(move): to.full() --> return false\n");
+    if (to.full()) { dprint(": to.full() --> return false\n");
       return false;
     }
 
@@ -281,6 +284,7 @@ public: // open interface
 
     from.resize(from.size() - size_used_in_from);
     to.base_type::operator=(move(result));
+    dprint(" --> return true\n");
     return true;
   }
 

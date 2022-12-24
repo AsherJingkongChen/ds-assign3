@@ -199,8 +199,9 @@ private: // data
 
 public: // interface
   // insert
+  //
   // `target` = new sorted_array with one inserted `value`
-  //            and capacity 2
+  //            and capacity 1
   //
   // `target` walk from the shortest sorted_array
   // to the following longer ones each iteration
@@ -229,7 +230,7 @@ public: // interface
   //   merging the other sorted_array to `target`
   //   the iteration continues
   //
-  // before going to the next iteration:
+  // before each iteration starting:
   //   `target` gets the capacity doubled
   //
   // only one new sorted_array will be constructed
@@ -237,13 +238,14 @@ public: // interface
   //
   void insert(const_reference value) {
     block_type target(value);
-    target.double_cap();
 
     typename base_type::iterator
     base_other(base_type::begin()),
     base_end(base_type::end());
 
     for (; base_other != base_end; base_other++) {
+      target.double_cap();
+
       if (merge(move(target), *base_other)) {
         if (target.empty()) {
           return;
@@ -252,20 +254,15 @@ public: // interface
       } else {
         merge(move(*base_other), target);
       }
-
-      target.double_cap();
     }
 
     if (not target.empty()) {
-      // cut off the capacity allocated at the last iteration
-      //
-      target.halve_cap();
-      push_back(target);
-      shrink_to_fit();
+      push_back(move(target));
     }
   }
 
   // find
+  //
   // it returns the first found const_iterator `it`
   // that walk from the shortest sorted_array 
   // to the following longer ones and `*it == value`
@@ -290,6 +287,7 @@ public: // interface
   }
 
   // erase
+  //
   // `target` = erased sorted_array
   //
   // `target` walk from the shortest sorted_array
@@ -316,7 +314,7 @@ public: // interface
   //
   // `erase()` does not reallocate
   //
-  // [TODO]: currently, there's no viable `shrink_to_fit()` 
+  // [TODO]: currently, there's no viable `shrink_to_fit()`
   //         to make memory management more efficient
   //
   void erase(const_iterator pos) {
@@ -345,11 +343,11 @@ public: // interface
       array_of_sorted_arrays const &other) {
 
     out << "[ AR_SAR, '" << other.size() << "/" << other.cap()
-        << "', {\n";
+        << "',\n  {\n";
     for (auto &sa: other.to_vector()) { 
-      out << "  " << sa << "\n"; 
+      out << "    " << sa << "\n"; 
     }
-    out << "} ]";
+    out << "  }\n]";
     return out;
   }
 

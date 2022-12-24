@@ -63,6 +63,7 @@ testing: timeout 2s bin/test/insert/hashtable 19 0 >> output/test/insert/hashtab
 testing: timeout 2s bin/test/insert/hashtable 20 0 >> output/test/insert/hashtable.log
 testing: timeout 2s bin/test/insert/hashtable 21 0 >> output/test/insert/hashtable.log
 testing: timeout 2s bin/test/insert/hashtable 22 0 >> output/test/insert/hashtable.log
+> remedy the output for this timeout
 testing: timeout 2s bin/test/insert/hashtable 23 124 >> output/test/insert/hashtable.log
 testing: timeout 2s bin/test/insert/hashtable 24 1 >> output/test/insert/hashtable.log
 testing: timeout 2s bin/test/insert/hashtable 25 1 >> output/test/insert/hashtable.log
@@ -126,9 +127,9 @@ testing: timeout 2s bin/test/search/array_of_sorted_arrays 18 0 >> output/test/s
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 19 0 >> output/test/search/array_of_sorted_arrays.log
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 20 0 >> output/test/search/array_of_sorted_arrays.log
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 21 0 >> output/test/search/array_of_sorted_arrays.log
-testing: timeout 2s bin/test/search/array_of_sorted_arrays 22 0 >> output/test/search/array_of_sorted_arrays.log
 > remedy the output for this timeout
-testing: timeout 2s bin/test/search/array_of_sorted_arrays 23 124 >> output/test/search/array_of_sorted_arrays.log
+testing: timeout 2s bin/test/search/array_of_sorted_arrays 22 124 >> output/test/search/array_of_sorted_arrays.log
+testing: timeout 2s bin/test/search/array_of_sorted_arrays 23 1 >> output/test/search/array_of_sorted_arrays.log
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 24 1 >> output/test/search/array_of_sorted_arrays.log
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 25 1 >> output/test/search/array_of_sorted_arrays.log
 testing: timeout 2s bin/test/search/array_of_sorted_arrays 26 1 >> output/test/search/array_of_sorted_arrays.log
