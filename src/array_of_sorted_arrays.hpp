@@ -7,7 +7,7 @@
 
 namespace ds {
 
-// to maintain the entire array's structure,
+// to maintain the entire structure,
 // it is important to keep shorter arrays empty
 //
 template<
@@ -205,7 +205,7 @@ public: // interface
   // `target` walk from the shortest sorted_array
   // to the following longer ones each iteration
   //
-  // the iteration ends at base array's `cend()`
+  // the iteration ends at `cend()` of the base array
   //
   // `insert()` do the opposite to `erase()`,
   // `target` prones to clear itself 
@@ -269,7 +269,7 @@ public: // interface
   // that walk from the shortest sorted_array 
   // to the following longer ones and `*it == value`
   //
-  // the iteration ends at base array's `cend()`
+  // the iteration ends at `cend()` of the base array
   //
   const_iterator find(const_reference value) const {
     typename base_type::const_iterator
