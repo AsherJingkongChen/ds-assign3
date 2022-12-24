@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "../general/general.hpp"
-#include "../../third-party/Skiplist/include/chef_base/chef_skiplist.hpp"
+#include "../../third-party/Skiplist/include/skip_list.hpp"
 
 using namespace ds;
 using namespace std;
@@ -50,9 +50,9 @@ int main(int argc, char* argv[]) {
 
   // build structure
   //
-  chef::skiplist<int, bool> st;
+  skip_list::skip_list<int> st;
   for (size_t t(from_2_power_of(size_in_2_power_of)); t--;) {
-    st.insert({rng(), false});
+    st.insert(rng());
   }
 
   // start test

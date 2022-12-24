@@ -1,6 +1,3 @@
-[submodule "third-party/Skiplist"]
-	path = third-party/Skiplist
-	url = git@github.com:AsherJingkongChen/libchef.git
 [submodule "third-party/ISheng"]
 	path = third-party/ISheng
 	url = git@github.com:AsherJingkongChen/datastucture.git
@@ -10,3 +7,6 @@
 [submodule "third-party/BTree"]
 	path = third-party/BTree
 	url = git@github.com:AsherJingkongChen/cpp-btree.git
+[submodule "third-party/Skiplist"]
+	path = third-party/Skiplist
+	url = git@github.com:AsherJingkongChen/skip_list.git
