@@ -1,4 +1,11 @@
-skiplist,search,10,11
-skiplist,search,11,15
-skiplist,search,12,22
-skiplist,search,13,26
+skiplist,search,10,12
+skiplist,search,11,16
+skiplist,search,12,26
+skiplist,search,13,29
+skiplist,search,14,37
+skiplist,search,15,58
+skiplist,search,16,89
+skiplist,search,17,176
+skiplist,search,18,170
+skiplist,search,19,294
+skiplist,search,20,229
