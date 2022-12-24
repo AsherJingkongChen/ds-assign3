@@ -2,6 +2,10 @@
 
 ### [Home page](https://github.com/AsherJingkongChen/ds-assign3)
 
+### Internal libraries
+
+- Array of sorted arrays: Myself, advised from [my data structure teacher](https://ah.nccu.edu.tw/scholar?id=7326&locale=en-US)
+
 ### External libraries
 
 - B-Tree: GitHub, forked from [Kronuz/cpp-btree](https://github.com/Kronuz/cpp-btree) to [AsherJingkongChen/cpp-btree](https://github.com/AsherJingkongChen/cpp-btree)
