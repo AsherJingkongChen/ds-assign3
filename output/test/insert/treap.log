@@ -4,10 +4,10 @@ treap,insert,12,1
 treap,insert,13,2
 treap,insert,14,4
 treap,insert,15,12
-treap,insert,16,29
-treap,insert,17,73
-treap,insert,18,204
-treap,insert,19,688
+treap,insert,16,26
+treap,insert,17,64
+treap,insert,18,177
+treap,insert,19,482
 treap,insert,20,
 treap,insert,21,
 treap,insert,22,
