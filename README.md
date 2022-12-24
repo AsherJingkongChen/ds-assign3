@@ -4,7 +4,7 @@
 
 ### External libraries
 
-- B-Tree: GitHub, forked from [from](https://github.com/Kronuz/cpp-btree) to [to](https://github.com/AsherJingkongChen/cpp-btree)
+- B-Tree: GitHub, forked from [Kronuz/cpp-btree](https://github.com/Kronuz/cpp-btree) to [AsherJingkongChen/cpp-btree](https://github.com/AsherJingkongChen/cpp-btree)
   - class name: `btree::set`
   - test file name: `btree`
 
@@ -12,11 +12,11 @@
   - class name: `std::unordered_set`
   - test file name: `hashtable`
 
-- Skip List: GitHub, forked from [from](https://github.com/razmikTovmas/skip_list) to [to](https://github.com/AsherJingkongChen/skip_list)
+- Skip List: GitHub, forked from [razmikTovmas/skip_list](https://github.com/razmikTovmas/skip_list) to [AsherJingkongChen/skip_list](https://github.com/AsherJingkongChen/skip_list)
   - class name: `skip_list::skip_list`
   - test file name: `skiplist`
 
-- Treap: GitHub, forked from [from](https://github.com/ruofeidu/DuAlgorithm) to [to](https://github.com/AsherJingkongChen/DuAlgorithm)
+- Treap: GitHub, forked from [ruofeidu/DuAlgorithm](https://github.com/ruofeidu/DuAlgorithm) to [AsherJingkongChen/DuAlgorithm](https://github.com/AsherJingkongChen/DuAlgorithm)
   - class name: `Treap`
   - test file name: `treap`
 
