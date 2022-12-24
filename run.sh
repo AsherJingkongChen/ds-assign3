@@ -31,33 +31,20 @@ for name in ${NAMES[@]}; do
   for (( size=$FROM; size<=$TO; size++ )); do
     binary_name="bin/test/$name";
 
-    # insert: may timeout
-    # search: may timeout
-    #
-    case "$name" in
-      insert*)
-        echo "testing: timeout $TIMEOUT_SECOND $binary_name" \
-             "$size $do_skipping >> $output_name";
+    echo "testing: timeout $TIMEOUT_SECOND $binary_name" \
+          "$size $do_skipping >> $output_name";
 
-        timeout $TIMEOUT_SECOND \
-        $binary_name $size $do_skipping >> $output_name;
-      ;;
-
-      search*)
-        echo "testing: timeout $TIMEOUT_SECOND $binary_name" \
-             "$size $do_skipping >> $output_name";
-
-        timeout $TIMEOUT_SECOND \
-        $binary_name $size $do_skipping >> $output_name;
-      ;;
-    esac
+    timeout $TIMEOUT_SECOND \
+    $binary_name $size $do_skipping >> $output_name;
 
     do_skipping=$?;
 
-    # remedy the output at first timeout
+    # remedy the output at timeout
     #
-    if [ $is_first_skip -eq 1 ] && 
-       [ $do_skipping   -ne 0 ]; then
+    if [[ $(tail -1 $output_name) != *"$size"* ]] && 
+       [ $do_skipping -ne 0 ]; then
+
+      echo "> remedy the output for this timeout";
 
       timeout $TIMEOUT_SECOND \
       $binary_name $size $do_skipping >> $output_name;
