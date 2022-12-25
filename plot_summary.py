@@ -91,16 +91,20 @@ with open(summary_csv_name, "r", newline = "") as f:
         delimiter = ",",
         lineterminator = "\n",
         quoting = csv.QUOTE_MINIMAL,
-        fieldnames = get_plot_dict("")["color"].keys()
+        fieldnames = 
+          ["size_in_2_power_of"] + 
+          list(get_plot_dict("")["color"].keys())
       )
 
       rows = []
 
       for x in get_plot_dict("")["x"]:
-        rows.append({
+        row = {
           stname: xy[x] 
           for stname, xy in plot_dicts[opname]["xy"].items()
-        })
+        }
+        row["size_in_2_power_of"] = x
+        rows.append(row)
 
       csv_out.writeheader()
       csv_out.writerows(rows)
