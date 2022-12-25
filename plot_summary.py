@@ -171,6 +171,10 @@ with open(summary_csv_name, "r", newline = "") as f:
 
     plt.yscale('symlog')
 
-    savepath = f"{output_dirname}/{plot_name}.png"
+    savepath = f"{output_dirname}/{plot_name}_large.png"
     plt.savefig(savepath, dpi = 350)
+    print(f"output plot: {savepath}")
+
+    savepath = f"{output_dirname}/{plot_name}_small.png"
+    plt.savefig(savepath, dpi = 150)
     print(f"output plot: {savepath}")
