@@ -30,7 +30,7 @@ NAMES=(
 );
 
 FROM=10; TO=30;
-TIMEOUT_SECOND="2s";
+TIMEOUT_SECOND="1h";
 
 RESULT_HEADER=\
 "structure_name,\
