@@ -7,3 +7,6 @@
 [submodule "third-party/Skiplist"]
 	path = third-party/Skiplist
 	url = git@github.com:AsherJingkongChen/skip_list.git
+[submodule "third-party/matplotlib-cpp"]
+	path = third-party/matplotlib-cpp
+	url = git@github.com:lava/matplotlib-cpp.git

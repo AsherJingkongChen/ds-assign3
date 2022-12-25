@@ -14,12 +14,16 @@ fi
 
 [ ! -d "output/test/summary" ] && mkdir "output/test/summary";
 
-echo "creating header for $RESULT_NAME";
-echo $RESULT_HEADER > $RESULT_NAME;
+summary_name="output/test/summary/$SUMMARY_NAME";
+
+echo "creating header for $summary_name";
+echo $SUMMARY_HEADER > $summary_name;
 
 for name in ${NAMES[@]}; do
   output_name="output/test/$name.log";
-  echo "cat $output_name >> $RESULT_NAME";
 
-  cat $output_name >> $RESULT_NAME;
+  echo "cat $output_name >> $summary_name";
+  cat $output_name >> $summary_name;
 done
+
+

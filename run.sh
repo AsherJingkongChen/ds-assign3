@@ -22,7 +22,7 @@ fi
 [ ! -d "output/test/insert" ] && mkdir "output/test/insert";
 [ ! -d "output/test/search" ] && mkdir "output/test/search";
 
-for name in ${NAMES[@]}; do
+for name in ${RUN_NAMES[@]}; do
   output_name="output/test/$name.log";
   > $output_name;
 

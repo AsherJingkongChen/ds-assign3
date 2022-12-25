@@ -23,9 +23,10 @@ $CXX $CXXFLAGS --version;
 [ ! -d "bin/test/insert" ] && mkdir "bin/test/insert";
 [ ! -d "bin/test/search" ] && mkdir "bin/test/search";
 
-for name in ${NAMES[@]}; do
+for name in ${BUILD_NAMES[@]}; do
   source_name="test/$name.cpp";
   binary_name="bin/test/$name";
+
   echo "compiling: $CXX $CXXFLAGS" \
        "$source_name -o $binary_name";
 

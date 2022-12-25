@@ -16,7 +16,7 @@ CXXFLAGS=\
 -O3 \
 -w";
 
-NAMES=(
+RUN_NAMES=(
   "insert/array_of_sorted_arrays"
   "insert/btree"
   "insert/hashtable"
@@ -29,13 +29,23 @@ NAMES=(
   "search/treap"
 );
 
+BUILD_NAMES=(
+  "${RUN_NAMES[@]}" 
+  "summary/summary_plot.cpp"
+);
+
 FROM=10; TO=30;
 TIMEOUT_SECOND="1h";
 
-RESULT_HEADER=\
+SUMMARY_HEADER=\
 "structure_name,\
 operation_name,\
 size_in_2_power_of,\
 time_in_millisecond";
 
-RESULT_NAME="output/test/summary/summary.csv";
+SUMMARY_NAME="summary.csv";
+
+SUMMARY_PLOT_NAMES=(
+  "insert"
+  "search"
+);
