@@ -78,6 +78,33 @@ with open(summary_csv_name, "r", newline = "") as f:
         elif y == 0:
           xy[x] = 1
 
+  # write predictive data to 
+  # <output_dirname>/prediction_insert.csv,
+  # <output_dirname>/prediction_search.csv
+  #
+  for opname in plot_dicts.keys():
+    with open(
+        f"{output_dirname}/prediction_{opname}.csv", 
+        "w", newline = "") as f:
+
+      csv_out = csv.DictWriter(f,
+        delimiter = ",",
+        lineterminator = "\n",
+        quoting = csv.QUOTE_MINIMAL,
+        fieldnames = get_plot_dict("")["color"].keys()
+      )
+
+      rows = []
+
+      for x in get_plot_dict("")["x"]:
+        rows.append({
+          stname: xy[x] 
+          for stname, xy in plot_dicts[opname]["xy"].items()
+        })
+
+      csv_out.writeheader()
+      csv_out.writerows(rows)
+    
   # drawing plots
   #
   for plot_name, plot_dict in plot_dicts.items():
@@ -104,7 +131,7 @@ with open(summary_csv_name, "r", newline = "") as f:
       # ref: https://stackoverflow.com/a/52244724
       #
       for i, v in enumerate(xy.values()):
-        ax.text(i + 10, int(2.2 * v ** 1.1), 
+        ax.text(i + 10, v, 
           f"{v}", 
           ha = "center", 
           fontsize = 6, 
