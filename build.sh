@@ -18,6 +18,11 @@ fi
 echo "using CXX compiler and CXXFLAGS:";
 $CXX $CXXFLAGS --version;
 
+if [ $? -ne 0 ]; then
+  echo "CXX compiler is not found";
+  exit 1;
+fi
+
 [ ! -d "bin" ] && mkdir "bin";
 [ ! -d "bin/test" ] && mkdir "bin/test";
 [ ! -d "bin/test/insert" ] && mkdir "bin/test/insert";

@@ -8,6 +8,11 @@ source config.sh;
 echo "using timeout command:";
 timeout --version;
 
+if [ $? -ne 0 ]; then
+  echo "timeout command is not found";
+  exit 1;
+fi
+
 if [ ! -d "bin" ] ||
    [ ! -d "bin/test" ] ||
    [ ! -d "bin/test/insert" ] ||

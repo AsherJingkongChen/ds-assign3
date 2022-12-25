@@ -3,6 +3,23 @@
 
 source config.sh;
 
+# argument
+# [$1]: PYTHON
+#
+if [ $# -eq 1 ]; then
+  PYTHON=$1;
+fi
+
+# check python version
+#
+echo "using python:";
+$PYTHON --version;
+
+if [ $? -ne 0 ]; then
+  echo "python is not found";
+  exit 1;
+fi
+
 if [ ! -d "output" ] ||
    [ ! -d "output/test" ] ||
    ([ ! -d "output/test/insert" ] &&
@@ -14,16 +31,16 @@ fi
 
 [ ! -d "output/test/summary" ] && mkdir "output/test/summary";
 
-summary_name="output/test/summary/$SUMMARY_NAME";
+summary_csv_name="output/test/summary/$SUMMARY_NAME.csv";
 
-echo "creating header for $summary_name";
-echo $SUMMARY_HEADER > $summary_name;
+echo "creating CSV header for $summary_csv_name";
+echo $SUMMARY_HEADER > $summary_csv_name;
 
-for name in ${NAMES[@]}; do
+for name in ${RUN_NAMES[@]}; do
   output_name="output/test/$name.log";
 
-  echo "cat $output_name >> $summary_name";
-  cat $output_name >> $summary_name;
+  echo "cat $output_name >> $summary_csv_name";
+  cat $output_name >> $summary_csv_name;
 done
 
-
+# [TODO]

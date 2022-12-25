@@ -16,6 +16,8 @@ CXXFLAGS=\
 -O3 \
 -w";
 
+PYTHON="python3";
+
 RUN_NAMES=(
   "insert/array_of_sorted_arrays"
   "insert/btree"
@@ -30,8 +32,7 @@ RUN_NAMES=(
 );
 
 BUILD_NAMES=(
-  "${RUN_NAMES[@]}" 
-  "summary/summary_plot.cpp"
+  "${RUN_NAMES[@]}"
 );
 
 FROM=10; TO=30;
@@ -43,7 +44,7 @@ operation_name,\
 size_in_2_power_of,\
 time_in_millisecond";
 
-SUMMARY_NAME="summary.csv";
+SUMMARY_NAME="summary";
 
 SUMMARY_PLOT_NAMES=(
   "insert"
