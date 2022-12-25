@@ -21,14 +21,14 @@ def get_plot_dict(title: str):
       "btree":                  "#7EBDA4",
       "hashtable":              "#AA8844",
       "skiplist":               "#4589BC",
-      "treap":                  "#CAAACD"
+      "treap":                  "#CA8ACD"
     },
     "handle": [
       Patch(color='#DD4444', label="Array of sorted arrays"),
       Patch(color='#7EBDA4', label="B-Tree"),
       Patch(color='#AA8844', label="Hash Table"),
       Patch(color='#4589BC', label="Skip List"),
-      Patch(color='#CAAACD', label="Treap")
+      Patch(color='#CA8ACD', label="Treap")
     ],
     "x": x,
     "xy": {
@@ -125,9 +125,9 @@ with open(summary_csv_name, "r", newline = "") as f:
       linewidth = 1
     )
 
-    fig.set_size_inches(8, 6)
+    fig.set_size_inches(7, 4)
     plt.xticks(plot_dict["x"])
-    plt.grid(which = 'both', alpha = 0.4)
+    plt.grid(which = 'both', alpha = 0.3)
 
     # putting data on the plot
     #
@@ -148,7 +148,7 @@ with open(summary_csv_name, "r", newline = "") as f:
         xy.keys(),
         xy.values(),
         color = plot_dict["color"][stname],
-        alpha = 0.8,
+        alpha = 0.7,
         linewidth = 2
       )
 
@@ -164,7 +164,10 @@ with open(summary_csv_name, "r", newline = "") as f:
     plt.title(plot_dict["title"])
     plt.xlabel("Size in 2 power of")
     plt.ylabel('Millisecond')
-    plt.legend(handles = plot_dict["handle"])
+    plt.legend(
+      handles = plot_dict["handle"],
+      fontsize = 8
+    )
 
     plt.yscale('symlog')
 
