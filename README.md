@@ -2,12 +2,21 @@
 
 ### [Home page](https://github.com/AsherJingkongChen/ds-assign3)
 
+### Prerequisites
+
+- GNU C++ Compiler
+- timeout command (or GNU gtimeout)
+- Python 3
+- Matplotlib for python
+
 ### Internal libraries
 
 - Array of sorted arrays: Myself, advised from [my data structure teacher](https://ah.nccu.edu.tw/scholar?id=7326&locale=en-US)
+  - test file name: `test/*/array_of_sorted_arrays.cpp`
+  - source file name: `src/array_of_sorted_arrays.cpp`
 
 - general: Myself
-  - test file name: `general.hpp`
+  - test file name: `test/general/general.hpp`
 
 - shell scripts: Myself
 
@@ -15,19 +24,19 @@
 
 - B-Tree: GitHub, forked from [Kronuz/cpp-btree](https://github.com/Kronuz/cpp-btree) to [AsherJingkongChen/cpp-btree](https://github.com/AsherJingkongChen/cpp-btree)
   - class name: `btree::set`
-  - test file name: `btree.cpp`
+  - test file name: `test/*/btree.cpp`
 
 - Hash Table: GNU libstdc++: [documentation](https://gcc.gnu.org/onlinedocs/gcc-12.2.0/libstdc++/api/a08942.html)
   - class name: `std::unordered_set`
-  - test file name: `hashtable.cpp`
+  - test file name: `test/*/hashtable.cpp`
 
 - Skip List: GitHub, forked from [razmikTovmas/skip_list](https://github.com/razmikTovmas/skip_list) to [AsherJingkongChen/skip_list](https://github.com/AsherJingkongChen/skip_list)
   - class name: `skip_list::skip_list`
-  - test file name: `skiplist.cpp`
+  - test file name: `test/*/skiplist.cpp`
 
 - Treap: GitHub, forked from [ruofeidu/DuAlgorithm](https://github.com/ruofeidu/DuAlgorithm) to [AsherJingkongChen/DuAlgorithm](https://github.com/AsherJingkongChen/DuAlgorithm)
   - class name: `Treap`
-  - test file name: `treap.cpp`
+  - test file name: `test/*/treap.cpp`
 
 ### File structure (excluding third-party)
 
