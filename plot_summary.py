@@ -172,5 +172,5 @@ with open(summary_csv_name, "r", newline = "") as f:
     plt.yscale('symlog')
 
     savepath = f"{output_dirname}/{plot_name}.png"
-    plt.savefig(savepath, dpi = 300)
+    plt.savefig(savepath, dpi = 350)
     print(f"output plot: {savepath}")
