@@ -16,8 +16,6 @@ CXXFLAGS=\
 -O3 \
 -w";
 
-PYTHON="python3";
-
 RUN_NAMES=(
   "insert/array_of_sorted_arrays"
   "insert/btree"
@@ -45,8 +43,3 @@ size_in_2_power_of,\
 time_in_millisecond";
 
 SUMMARY_NAME="summary";
-
-SUMMARY_PLOT_NAMES=(
-  "insert"
-  "search"
-);

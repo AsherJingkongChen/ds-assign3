@@ -37,7 +37,7 @@ for name in ${RUN_NAMES[@]}; do
     binary_name="bin/test/$name";
 
     echo "testing: timeout $TIMEOUT_SECOND $binary_name" \
-          "$size $do_skipping >> $output_name";
+         "$size $do_skipping >> $output_name";
 
     timeout $TIMEOUT_SECOND \
     $binary_name $size $do_skipping >> $output_name;
