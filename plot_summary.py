@@ -3,6 +3,8 @@ import csv
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
+BLANK = -1
+
 # sz_2pow: size in 2 power of
 #
 summary_csv_name = "output/test/summary/summary.csv"
@@ -57,7 +59,6 @@ with open(summary_csv_name, "r", newline = "") as f:
 
   # build `plot_dicts`
   #
-  BLANK = -1
   for row in csv_rows:
     stname = row["structure_name"]
     opname = row["operation_name"]
@@ -70,7 +71,7 @@ with open(summary_csv_name, "r", newline = "") as f:
   # fill blank with predictive value
   #
   for plot_dict in plot_dicts.values():
-    for xy in plot_dict["xy"].values():
+    for stname, xy in plot_dict["xy"].items():
       for x, y in xy.items():
         if y == BLANK:
           xy[x] = int(xy[x - 1] / xy[x - 2]) * xy[x - 1]
@@ -83,6 +84,16 @@ with open(summary_csv_name, "r", newline = "") as f:
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
+    # timeout line
+    #
+    plt.plot(
+      list(range(10, 31, 1)),
+      [3600000] * 21,
+      "-.",
+      color = "#A33333",
+      linewidth = 1
+    )
+
     fig.set_size_inches(8, 6)
     plt.xticks(plot_dict["x"])
     plt.grid(which = 'both', alpha = 0.4)
@@ -93,10 +104,10 @@ with open(summary_csv_name, "r", newline = "") as f:
       # ref: https://stackoverflow.com/a/52244724
       #
       for i, v in enumerate(xy.values()):
-        ax.text(i + 10, v, 
+        ax.text(i + 10, int(2.2 * v ** 1.1), 
           f"{v}", 
           ha = "center", 
-          fontsize = 4, 
+          fontsize = 6, 
           fontdict = {
             "color": plot_dict["color"][stname]
           }
@@ -124,8 +135,8 @@ with open(summary_csv_name, "r", newline = "") as f:
     plt.ylabel('Millisecond')
     plt.legend(handles = plot_dict["handle"])
 
-    plt.yscale('log')
+    plt.yscale('symlog')
 
-    savepath = f"{output_dirname}/{plot_name}"
-    plt.savefig(savepath, dpi = 400)
+    savepath = f"{output_dirname}/{plot_name}.png"
+    plt.savefig(savepath, dpi = 350)
     print(f"output plot: {savepath}")

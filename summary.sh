@@ -3,6 +3,33 @@
 
 source config.sh;
 
+# argument
+# [$1]: PYTHON
+#
+if [ $# -eq 1 ]; then
+  PYTHON=$1;
+fi
+
+# check python version
+#
+echo "using python:";
+$PYTHON --version;
+
+if [ $? -ne 0 ]; then
+  echo "python is not found";
+  exit 1;
+fi
+
+# check pip list for matplotlib dependency
+#
+echo "using python package - matplotlib:";
+$PYTHON -m pip list | grep "matplotlib";
+
+if [ $? -ne 0 ]; then
+  echo "matplotlib is not found";
+  exit 1;
+fi
+
 if [ ! -d "output" ] ||
    [ ! -d "output/test" ] ||
    ([ ! -d "output/test/insert" ] &&
@@ -25,3 +52,5 @@ for name in ${RUN_NAMES[@]}; do
   echo "cat $output_name >> $summary_csv_name";
   cat $output_name >> $summary_csv_name;
 done
+
+$PYTHON "plot_$SUMMARY_NAME.py";

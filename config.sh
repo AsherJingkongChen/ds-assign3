@@ -16,6 +16,8 @@ CXXFLAGS=\
 -O3 \
 -w";
 
+PYTHON="python3";
+
 RUN_NAMES=(
   "insert/array_of_sorted_arrays"
   "insert/btree"
