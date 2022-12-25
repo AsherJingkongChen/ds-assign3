@@ -131,6 +131,8 @@ public: // open interface
   // returns `iter`; otherwise returns `cend()`
   //
   const_iterator find(const_reference value) const { dprint("find(value)\n");
+    assert(std::is_sorted(cbegin(), cend()));
+
     const_iterator 
     iter(
       std::lower_bound(cbegin(), cend(), value, __compare)
