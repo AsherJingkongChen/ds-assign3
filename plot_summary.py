@@ -74,7 +74,7 @@ with open(summary_csv_name, "r", newline = "") as f:
     for stname, xy in plot_dict["xy"].items():
       for x, y in xy.items():
         if y == BLANK:
-          xy[x] = int(xy[x - 1] / xy[x - 2]) * xy[x - 1]
+          xy[x] = int(xy[x - 1] ** 2 / xy[x - 2])
         elif y == 0:
           xy[x] = 1
 
