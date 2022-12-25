@@ -53,4 +53,4 @@ for name in ${RUN_NAMES[@]}; do
   cat $output_name >> $summary_csv_name;
 done
 
-$PYTHON "plot_$SUMMARY_NAME.py";
+$PYTHON "test/summary/plot_$SUMMARY_NAME.py";
