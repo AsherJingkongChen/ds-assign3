@@ -1,0 +1,35 @@
+bin/test/search/array_of_sorted_arrays:
+==76600== I1  miss rate:          0.00%
+==76600== LLi miss rate:          0.00%
+==76600== D1  miss rate:           0.5% (        0.6%     +         0.2%  )
+==76600== LLd miss rate:           0.0% (        0.0%     +         0.0%  )
+==76600== LL miss rate:            0.0% (        0.0%     +         0.0%  )
+
+bin/test/search/btree:
+==76620== I1  miss rate:        0.00%
+==76620== LLi miss rate:        0.00%
+==76620== D1  miss rate:         2.9% (       3.5%     +        0.9%  )
+==76620== LLd miss rate:         0.0% (       0.0%     +        0.1%  )
+==76620== LL miss rate:          0.0% (       0.0%     +        0.1%  )
+
+bin/test/search/hashtable:
+==76625== I1  miss rate:        0.00%
+==76625== LLi miss rate:        0.00%
+==76625== D1  miss rate:         2.6% (       3.9%     +        0.5%  )
+==76625== LLd miss rate:         0.6% (       0.8%     +        0.4%  )
+==76625== LL miss rate:          0.2% (       0.1%     +        0.4%  )
+
+bin/test/search/skiplist:
+==76629== I1  miss rate:          0.00%
+==76629== LLi miss rate:          0.00%
+==76629== D1  miss rate:           5.4% (        7.0%     +        1.0%  )
+==76629== LLd miss rate:           1.2% (        1.5%     +        0.5%  )
+==76629== LL miss rate:            0.3% (        0.3%     +        0.5%  )
+
+bin/test/search/treap:
+==76643== I1  miss rate:        0.00%
+==76643== LLi miss rate:        0.00%
+==76643== D1  miss rate:         6.3% (        8.3%     +        0.4%  )
+==76643== LLd miss rate:         0.7% (        0.8%     +        0.3%  )
+==76643== LL miss rate:          0.2% (        0.2%     +        0.3%  )
+

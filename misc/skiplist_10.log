@@ -1,0 +1,11 @@
+skiplist,insert,10,0
+skiplist,insert,11,1
+skiplist,insert,12,3
+skiplist,insert,13,3
+skiplist,insert,14,12
+skiplist,insert,15,29
+skiplist,insert,16,76
+skiplist,insert,17,254
+skiplist,insert,18,1064
+skiplist,insert,19,4776
+skiplist,insert,20,27347

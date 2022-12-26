@@ -1,0 +1,35 @@
+bin/test/insert/array_of_sorted_arrays:
+==71610== I1  miss rate:          0.00%
+==71610== LLi miss rate:          0.00%
+==71610== D1  miss rate:           0.2% (        0.2%     +         0.2%  )
+==71610== LLd miss rate:           0.0% (        0.0%     +         0.0%  )
+==71610== LL miss rate:            0.0% (        0.0%     +         0.0%  )
+
+bin/test/insert/btree:
+==73719== I1  miss rate:        0.00%
+==73719== LLi miss rate:        0.00%
+==73719== D1  miss rate:         2.3% (       3.1%     +        0.7%  )
+==73719== LLd miss rate:         0.0% (       0.0%     +        0.1%  )
+==73719== LL miss rate:          0.0% (       0.0%     +        0.1%  )
+
+bin/test/insert/hashtable:
+==73733== I1  miss rate:        0.00%
+==73733== LLi miss rate:        0.00%
+==73733== D1  miss rate:         3.1% (       4.3%     +        0.9%  )
+==73733== LLd miss rate:         1.1% (       1.3%     +        0.7%  )
+==73733== LL miss rate:          0.3% (       0.2%     +        0.7%  )
+
+bin/test/insert/skiplist:
+==74071== I1  miss rate:        0.00%
+==74071== LLi miss rate:        0.00%
+==74071== D1  miss rate:         3.8% (        4.8%     +        0.9%  )
+==74071== LLd miss rate:         0.8% (        1.0%     +        0.5%  )
+==74071== LL miss rate:          0.2% (        0.2%     +        0.5%  )
+
+bin/test/insert/treap:
+==75294== I1  miss rate:        0.00%
+==75294== LLi miss rate:        0.00%
+==75294== D1  miss rate:         3.6% (        5.0%     +        0.3%  )
+==75294== LLd miss rate:         0.4% (        0.4%     +        0.2%  )
+==75294== LL miss rate:          0.1% (        0.1%     +        0.2%  )
+

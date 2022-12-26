@@ -1,0 +1,5 @@
+bin/test/insert/array_of_sorted_arrays 20 0: 19336 KiB 4096
+bin/test/insert/btree 20 0: 6628 KiB 4096
+bin/test/insert/hashtable 20 0: 40176 KiB 4096
+bin/test/insert/skiplist 20 0: 62228 KiB 4096
+bin/test/insert/treap 20 0: 34540 KiB 4096

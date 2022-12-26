@@ -52,14 +52,10 @@
 |   |-- array_of_sorted_arrays.cpp
 |   |-- btree.cpp
 |   |-- hashtable.cpp
+|   |-- hashtable_rehash.cpp
 |   |-- skiplist.cpp
 |   `-- treap.cpp
 |-- img/
-|-- log/
-|   |-- build.sh.log
-|   |-- run.sh.log
-|   `-- summary.sh.log
-|-- onepass.sh*
 |-- output/
 |   `-- test/
 |       |-- insert/
@@ -75,6 +71,14 @@
 |       |   |-- skiplist.log
 |       |   `-- treap.log
 |       `-- summary/
+|           |-- insert_large.png
+|           |-- insert_small.png
+|           |-- insert_yscale_linear.png
+|           |-- prediction_insert.csv
+|           |-- prediction_search.csv
+|           |-- search_large.png
+|           |-- search_small.png
+|           |-- search_yscale_linear.png
 |           `-- summary.csv
 |-- run.sh*
 |-- src/
@@ -102,13 +106,11 @@
     |   |-- skiplist.cpp
     |   `-- treap.cpp
     `-- summary/
-        `-- plot_summary.cpp
+        `-- plot_summary.py
 
-15 directories, 46 files
- 105K used in 15 directories, 46 files
-
+14 directories, 51 files
+ 1.3M used in 14 directories, 51 files
 ```
-
 ### File structure (only third-party)
 
 ```
