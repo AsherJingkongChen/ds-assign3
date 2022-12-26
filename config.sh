@@ -20,27 +20,22 @@ PYTHON="python3";
 
 RUN_NAMES=(
   "insert/array_of_sorted_arrays"
-  # "insert/btree"
-  # "insert/hashtable"
-  # "insert/skiplist"
-  # "insert/treap"
-  # "search/array_of_sorted_arrays"
-  # "search/btree"
-  # "search/hashtable"
-  # "search/skiplist"
-  # "search/treap"
-);
-
-RUN_NAMES=(
-  "${RUN_NAMES[@]}"
-  "insert/L_array_of_sorted_arrays"
+  "insert/btree"
+  "insert/hashtable"
+  "insert/skiplist"
+  "insert/treap"
+  "search/array_of_sorted_arrays"
+  "search/btree"
+  "search/hashtable"
+  "search/skiplist"
+  "search/treap"
 );
 
 BUILD_NAMES=(
   "${RUN_NAMES[@]}"
 );
 
-FROM=20; TO=29;
+FROM=10; TO=30;
 TIMEOUT_SECOND="1h";
 
 SUMMARY_HEADER=\
@@ -49,4 +44,4 @@ operation_name,\
 size_in_2_power_of,\
 time_in_millisecond";
 
-SUMMARY_NAME="summary_L";
+SUMMARY_NAME="summary";
