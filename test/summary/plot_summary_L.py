@@ -12,7 +12,7 @@ filled_summary_csv_name = "output/test/summary/filled_summary_L.csv"
 output_dirname = "output/test/summary"
 
 def get_plot_dict(title: str):
-  x = list(range(16, 26, 1))
+  x = list(range(20, 30, 1))
 
   return {
     "title": title,
@@ -88,7 +88,7 @@ with open(summary_csv_name, "r", newline = "") as f:
   #
   for opname in plot_dicts.keys():
     with open(
-        f"{output_dirname}/prediction_{opname}.csv", 
+        f"{output_dirname}/prediction_{opname}_L.csv", 
         "w", newline = "") as f:
 
       csv_out = csv.DictWriter(f,

@@ -135,7 +135,7 @@ with open(summary_csv_name, "r", newline = "") as f:
       # ref: https://stackoverflow.com/a/52244724
       #
       for i, v in enumerate(xy.values()):
-        ax.text(i + 10, v, 
+        ax.text(i + min(get_plot_dict("")["x"]), v, 
           f"{v}", 
           ha = "center", 
           fontsize = 6, 
