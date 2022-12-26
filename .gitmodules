@@ -7,3 +7,6 @@
 [submodule "third-party/Skiplist"]
 	path = third-party/Skiplist
 	url = git@github.com:AsherJingkongChen/skip_list.git
+[submodule "third-party/ISheng"]
+	path = third-party/ISheng
+	url = git@github.com:AsherJingkongChen/datastucture.git

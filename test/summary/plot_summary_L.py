@@ -7,47 +7,51 @@ BLANK = -1
 
 # sz_2pow: size in 2 power of
 #
-summary_csv_name = "output/test/summary/summary.csv"
-filled_summary_csv_name = "output/test/summary/filled_summary.csv"
+summary_csv_name = "output/test/summary/summary_L.csv"
+filled_summary_csv_name = "output/test/summary/filled_summary_L.csv"
 output_dirname = "output/test/summary"
 
 def get_plot_dict(title: str):
-  x = list(range(10, 31, 1))
+  x = list(range(16, 26, 1))
 
   return {
     "title": title,
     "color": {
       "array_of_sorted_arrays": "#DD4444",
-      "btree":                  "#7EBDA4",
-      "hashtable":              "#AA8844",
-      "skiplist":               "#4589BC",
-      "treap":                  "#CA8ACD"
+      "L_array_of_sorted_arrays": "#EA77EE",
+      # "btree":                  "#7EBDA4",
+      # "hashtable":              "#AA8844",
+      # "skiplist":               "#4589BC",
+      # "treap":                  "#CA8ACD"
     },
     "handle": [
       Patch(color='#DD4444', label="Array of sorted arrays"),
-      Patch(color='#7EBDA4', label="B-Tree"),
-      Patch(color='#AA8844', label="Hash Table"),
-      Patch(color='#4589BC', label="Skip List"),
-      Patch(color='#CA8ACD', label="Treap")
+      Patch(color='#EA77EE', label="Lee's Array of sorted arrays"),
+      # Patch(color='#7EBDA4', label="B-Tree"),
+      # Patch(color='#AA8844', label="Hash Table"),
+      # Patch(color='#4589BC', label="Skip List"),
+      # Patch(color='#CA8ACD', label="Treap")
     ],
     "x": x,
     "xy": {
       "array_of_sorted_arrays": 
         { sz_2pow: 0 for sz_2pow in x },
-      "btree": 
+      "L_array_of_sorted_arrays": 
         { sz_2pow: 0 for sz_2pow in x },
-      "hashtable":
-        { sz_2pow: 0 for sz_2pow in x },
-      "skiplist":
-        { sz_2pow: 0 for sz_2pow in x },
-      "treap":
-        { sz_2pow: 0 for sz_2pow in x }
+      # "btree": 
+      #   { sz_2pow: 0 for sz_2pow in x },
+      # "hashtable":
+      #   { sz_2pow: 0 for sz_2pow in x },
+      # "skiplist":
+      #   { sz_2pow: 0 for sz_2pow in x },
+      # "treap":
+      #   { sz_2pow: 0 for sz_2pow in x }
     }
   }
 
 plot_dicts = {
   "insert": get_plot_dict("Insert Time"),
-  "search": get_plot_dict("Search Time")
+  # "search": get_plot_dict("Search Time")
 }
 
 with open(summary_csv_name, "r", newline = "") as f:
@@ -135,7 +139,7 @@ with open(summary_csv_name, "r", newline = "") as f:
       # ref: https://stackoverflow.com/a/52244724
       #
       for i, v in enumerate(xy.values()):
-        ax.text(i + 10, v, 
+        ax.text(i + min(get_plot_dict("")["x"]), v, 
           f"{v}", 
           ha = "center", 
           fontsize = 6, 
@@ -171,10 +175,10 @@ with open(summary_csv_name, "r", newline = "") as f:
 
     plt.yscale('symlog')
 
-    savepath = f"{output_dirname}/{plot_name}_large.png"
+    savepath = f"{output_dirname}/{plot_name}_L_large.png"
     plt.savefig(savepath, dpi = 350)
     print(f"output plot: {savepath}")
 
-    savepath = f"{output_dirname}/{plot_name}_small.png"
+    savepath = f"{output_dirname}/{plot_name}_L_small.png"
     plt.savefig(savepath, dpi = 150)
     print(f"output plot: {savepath}")
