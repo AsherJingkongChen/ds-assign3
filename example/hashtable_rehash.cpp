@@ -33,6 +33,6 @@ int main() {
   //
   for (std::size_t i(ds::from_2_power_of(4)); i--;) {
     structure.insert(i + 10);
-    std::cout << structure.load_factor() << std::endl;
+    std::cout << i << " " << structure.load_factor() << std::endl;
   }
 }
