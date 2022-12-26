@@ -11,16 +11,16 @@
 // > pwd
 //
 // please compile it with the command (GNU CXX COMPILER):
-// > g++ -std=c++17 hashtable_load_factor.cpp -o hashtable_load_factor
+// > g++ -std=c++17 hashtable_rehash.cpp -o hashtable_rehash
 //
 // after compilation, please run with the command:
-// > ./hashtable_load_factor
+// > ./hashtable_rehash
 //
 // after running, please remove it with the command:
-// > rm ./hashtable_load_factor
+// > rm ./hashtable_rehash
 //
 // or just enter this one command:
-// > g++ -std=c++17 hashtable_load_factor.cpp -o hashtable_load_factor && ./hashtable_load_factor && rm ./hashtable_load_factor
+// > g++ -std=c++17 hashtable_rehash.cpp -o hashtable_rehash && ./hashtable_rehash && rm ./hashtable_rehash
 //
 int main() {
   std::unordered_set<int> structure;
